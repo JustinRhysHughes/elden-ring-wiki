@@ -1,0 +1,26 @@
+[
+  {
+    "slug": "margit-the-fell-omen",
+    "name": "Margit, The Fell Omen",
+    "location": "Stormhill",
+    "description": "A powerful demigod who guards the entrance to Stormveil Castle. Margit is one of the first major challenges faced by Tarnished seeking to claim the Elden Ring.",
+    "difficulty": "Hard",
+    "drops": "Talisman Pouch"
+  },
+  {
+    "slug": "godrick-the-grafted",
+    "name": "Godrick the Grafted",
+    "location": "Stormveil Castle",
+    "description": "A demigod and descendant of Godfrey, the first Elden Lord. Godrick grafts the limbs of fallen warriors onto his body to gain their strength.",
+    "difficulty": "Hard",
+    "drops": "Shardbearing Soul, Godrick's Great Rune"
+  },
+  {
+    "slug": "rennala-queen-of-the-full-moon",
+    "name": "Rennala, Queen of the Full Moon",
+    "location": "Raya Lucaria Academy",
+    "description": "Once the head of the Carian royal family and a master sorceress, Rennala was shattered by the loss of her Erdleaf when her husband Radagon left her.",
+    "difficulty": "Medium",
+    "drops": "Remembrance of the Full Moon Queen, Great Rune of the Unborn"
+  }
+]

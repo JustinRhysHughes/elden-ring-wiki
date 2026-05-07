@@ -1,0 +1,20 @@
+[
+  {
+    "slug": "the-elden-ring",
+    "title": "The Elden Ring",
+    "category": "Artefacts",
+    "description": "The Elden Ring is the source of the Erdtree's power and the foundation of the Golden Order. It was shattered by the demigods after the death of Queen Marika's consort Radagon."
+  },
+  {
+    "slug": "the-golden-order",
+    "title": "The Golden Order",
+    "category": "Factions",
+    "description": "The Golden Order is the ruling theological and political system of the Lands Between, founded upon the power of the Elden Ring and the Erdtree. It was established by Godfrey, the first Elden Lord."
+  },
+  {
+    "slug": "the-erdtree",
+    "title": "The Erdtree",
+    "category": "Locations",
+    "description": "The Erdtree is a colossal golden tree that dominates the Lands Between. It is the source of Grace and the symbol of the Golden Order's power."
+  }
+]
