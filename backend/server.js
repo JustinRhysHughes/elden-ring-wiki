@@ -8,6 +8,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const { sequelize } = require("./models");
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -17,13 +18,15 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
+// Routes
+app.use("/api/auth", authRoutes);
+
 // Health check route
 app.get("/", (req, res) => {
   res.json({ message: "Elden Ring API is running" });
 });
 
 // Sync database and start server
-// force: false means it won't drop existing tables
 sequelize
   .sync({ force: false })
   .then(() => {
