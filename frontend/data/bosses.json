@@ -15,7 +15,7 @@
     "description": "A demigod and descendant of Godfrey, the first Elden Lord. Godrick grafts the limbs of fallen warriors onto his body to gain their strength.",
     "difficulty": "Hard",
     "drops": "Shardbearing Soul, Godrick's Great Rune",
-    "image": "/images/bosses/godrick.png"
+    "image": "/images/bosses/godrick.webp"
   },
   {
     "slug": "rennala-queen-of-the-full-moon",
@@ -24,7 +24,7 @@
     "description": "Once the head of the Carian royal family and a master sorceress, Rennala was shattered by the loss of her Erdleaf when her husband Radagon left her.",
     "difficulty": "Medium",
     "drops": "Remembrance of the Full Moon Queen, Great Rune of the Unborn",
-    "image": "/images/bosses/rennala.jpg"
+    "image": "/images/bosses/rennala.webp"
   },
   {
     "slug": "malenia-blade-of-miquella",
