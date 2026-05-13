@@ -5,6 +5,7 @@
 const express = require("express");
 const router = express.Router();
 const { verifyToken, isAdmin } = require("../middleware/auth");
+const { validate, bossSchema } = require("../middleware/validate");
 const {
   getAllBosses,
   getBossById,
@@ -18,9 +19,9 @@ const {
 router.get("/", getAllBosses);
 router.get("/:id", getBossById);
 
-// Admin only routes
-router.post("/", verifyToken, isAdmin, createBoss);
-router.put("/:id", verifyToken, isAdmin, updateBoss);
+// Admin only routes - Joi validation runs before controller
+router.post("/", verifyToken, isAdmin, validate(bossSchema), createBoss);
+router.put("/:id", verifyToken, isAdmin, validate(bossSchema), updateBoss);
 router.patch("/:id", verifyToken, isAdmin, patchBoss);
 router.delete("/:id", verifyToken, isAdmin, deleteBoss);
 

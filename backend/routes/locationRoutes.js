@@ -5,6 +5,7 @@
 const express = require("express");
 const router = express.Router();
 const { verifyToken, isAdmin } = require("../middleware/auth");
+const { validate, locationSchema } = require("../middleware/validate");
 const {
   getAllLocations,
   getLocationById,
@@ -18,9 +19,21 @@ const {
 router.get("/", getAllLocations);
 router.get("/:id", getLocationById);
 
-// Admin only routes
-router.post("/", verifyToken, isAdmin, createLocation);
-router.put("/:id", verifyToken, isAdmin, updateLocation);
+// Admin only routes - Joi validation runs before controller
+router.post(
+  "/",
+  verifyToken,
+  isAdmin,
+  validate(locationSchema),
+  createLocation,
+);
+router.put(
+  "/:id",
+  verifyToken,
+  isAdmin,
+  validate(locationSchema),
+  updateLocation,
+);
 router.patch("/:id", verifyToken, isAdmin, patchLocation);
 router.delete("/:id", verifyToken, isAdmin, deleteLocation);
 

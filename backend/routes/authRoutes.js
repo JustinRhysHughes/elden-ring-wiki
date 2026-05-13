@@ -8,12 +8,17 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { User } = require("../models");
+const {
+  validate,
+  registerSchema,
+  loginSchema,
+} = require("../middleware/validate");
 require("dotenv").config();
 
 // POST /api/auth/register
 // Creates a new user account
 // Password is automatically hashed via the User model hook
-router.post("/register", async (req, res) => {
+router.post("/register", validate(registerSchema), async (req, res) => {
   try {
     const { username, name, email, password, mobile } = req.body;
 
@@ -60,7 +65,7 @@ router.post("/register", async (req, res) => {
 
 // POST /api/auth/login
 // Authenticates a user and returns a signed JWT token
-router.post("/login", async (req, res) => {
+router.post("/login", validate(loginSchema), async (req, res) => {
   try {
     const { email, password } = req.body;
 
