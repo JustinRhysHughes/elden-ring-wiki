@@ -14,6 +14,14 @@ const getAllBosses = async (req, res) => {
     res.json(bosses);
   } catch (err) {
     console.error("Error fetching bosses:", err);
+    if (
+      err.name === "SequelizeConnectionError" ||
+      err.name === "SequelizeConnectionRefusedError"
+    ) {
+      return res.status(503).json({
+        error: "Database is currently unavailable, please try again later",
+      });
+    }
     res.status(500).json({ error: "Failed to fetch bosses" });
   }
 };
@@ -33,6 +41,14 @@ const getBossById = async (req, res) => {
     res.json(boss);
   } catch (err) {
     console.error("Error fetching boss:", err);
+    if (
+      err.name === "SequelizeConnectionError" ||
+      err.name === "SequelizeConnectionRefusedError"
+    ) {
+      return res.status(503).json({
+        error: "Database is currently unavailable, please try again later",
+      });
+    }
     res.status(500).json({ error: "Failed to fetch boss" });
   }
 };
@@ -60,6 +76,14 @@ const createBoss = async (req, res) => {
     res.status(201).json({ message: "Boss created successfully", boss });
   } catch (err) {
     console.error("Error creating boss:", err);
+    if (
+      err.name === "SequelizeConnectionError" ||
+      err.name === "SequelizeConnectionRefusedError"
+    ) {
+      return res.status(503).json({
+        error: "Database is currently unavailable, please try again later",
+      });
+    }
     if (err.name === "SequelizeValidationError") {
       return res.status(400).json({
         error: err.errors.map((e) => e.message),
@@ -92,6 +116,14 @@ const updateBoss = async (req, res) => {
     res.json({ message: "Boss updated successfully", boss });
   } catch (err) {
     console.error("Error updating boss:", err);
+    if (
+      err.name === "SequelizeConnectionError" ||
+      err.name === "SequelizeConnectionRefusedError"
+    ) {
+      return res.status(503).json({
+        error: "Database is currently unavailable, please try again later",
+      });
+    }
     if (err.name === "SequelizeValidationError") {
       return res.status(400).json({
         error: err.errors.map((e) => e.message),
@@ -116,6 +148,14 @@ const patchBoss = async (req, res) => {
     res.json({ message: "Boss patched successfully", boss });
   } catch (err) {
     console.error("Error patching boss:", err);
+    if (
+      err.name === "SequelizeConnectionError" ||
+      err.name === "SequelizeConnectionRefusedError"
+    ) {
+      return res.status(503).json({
+        error: "Database is currently unavailable, please try again later",
+      });
+    }
     res.status(500).json({ error: "Failed to patch boss" });
   }
 };
@@ -134,6 +174,14 @@ const deleteBoss = async (req, res) => {
     res.json({ message: "Boss deleted successfully" });
   } catch (err) {
     console.error("Error deleting boss:", err);
+    if (
+      err.name === "SequelizeConnectionError" ||
+      err.name === "SequelizeConnectionRefusedError"
+    ) {
+      return res.status(503).json({
+        error: "Database is currently unavailable, please try again later",
+      });
+    }
     res.status(500).json({ error: "Failed to delete boss" });
   }
 };

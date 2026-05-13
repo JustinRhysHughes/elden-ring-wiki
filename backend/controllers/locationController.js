@@ -14,6 +14,14 @@ const getAllLocations = async (req, res) => {
     res.json(locations);
   } catch (err) {
     console.error("Error fetching locations:", err);
+    if (
+      err.name === "SequelizeConnectionError" ||
+      err.name === "SequelizeConnectionRefusedError"
+    ) {
+      return res.status(503).json({
+        error: "Database is currently unavailable, please try again later",
+      });
+    }
     res.status(500).json({ error: "Failed to fetch locations" });
   }
 };
@@ -33,6 +41,14 @@ const getLocationById = async (req, res) => {
     res.json(location);
   } catch (err) {
     console.error("Error fetching location:", err);
+    if (
+      err.name === "SequelizeConnectionError" ||
+      err.name === "SequelizeConnectionRefusedError"
+    ) {
+      return res.status(503).json({
+        error: "Database is currently unavailable, please try again later",
+      });
+    }
     res.status(500).json({ error: "Failed to fetch location" });
   }
 };
@@ -50,6 +66,14 @@ const createLocation = async (req, res) => {
       .json({ message: "Location created successfully", location });
   } catch (err) {
     console.error("Error creating location:", err);
+    if (
+      err.name === "SequelizeConnectionError" ||
+      err.name === "SequelizeConnectionRefusedError"
+    ) {
+      return res.status(503).json({
+        error: "Database is currently unavailable, please try again later",
+      });
+    }
     if (err.name === "SequelizeValidationError") {
       return res.status(400).json({
         error: err.errors.map((e) => e.message),
@@ -80,6 +104,14 @@ const updateLocation = async (req, res) => {
     res.json({ message: "Location updated successfully", location });
   } catch (err) {
     console.error("Error updating location:", err);
+    if (
+      err.name === "SequelizeConnectionError" ||
+      err.name === "SequelizeConnectionRefusedError"
+    ) {
+      return res.status(503).json({
+        error: "Database is currently unavailable, please try again later",
+      });
+    }
     if (err.name === "SequelizeValidationError") {
       return res.status(400).json({
         error: err.errors.map((e) => e.message),
@@ -104,6 +136,14 @@ const patchLocation = async (req, res) => {
     res.json({ message: "Location patched successfully", location });
   } catch (err) {
     console.error("Error patching location:", err);
+    if (
+      err.name === "SequelizeConnectionError" ||
+      err.name === "SequelizeConnectionRefusedError"
+    ) {
+      return res.status(503).json({
+        error: "Database is currently unavailable, please try again later",
+      });
+    }
     res.status(500).json({ error: "Failed to patch location" });
   }
 };
@@ -122,6 +162,14 @@ const deleteLocation = async (req, res) => {
     res.json({ message: "Location deleted successfully" });
   } catch (err) {
     console.error("Error deleting location:", err);
+    if (
+      err.name === "SequelizeConnectionError" ||
+      err.name === "SequelizeConnectionRefusedError"
+    ) {
+      return res.status(503).json({
+        error: "Database is currently unavailable, please try again later",
+      });
+    }
     res.status(500).json({ error: "Failed to delete location" });
   }
 };
