@@ -1,0 +1,54 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.hero {
+  text-align: center;
+  padding: 3rem 0 2rem;
+  border-bottom: 1px solid #2e2e2e;
+  margin-bottom: 2rem;
+
+  h1 {
+    font-size: 2.5rem;
+    color: #c19d53;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: #c8b89a;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.section {
+  h2 {
+    color: #c19d53;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: #c8b89a;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  a {
+    color: #c19d53;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
