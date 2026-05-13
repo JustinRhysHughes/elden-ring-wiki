@@ -1,20 +1,44 @@
 [
   {
-    "slug": "the-elden-ring",
-    "title": "The Elden Ring",
-    "category": "Artefacts",
-    "description": "The Elden Ring is the source of the Erdtree's power and the foundation of the Golden Order. It was shattered by the demigods after the death of Queen Marika's consort Radagon."
+    "slug": "the-lands-between",
+    "title": "The Lands Between",
+    "category": "Location",
+    "description": "The Lands Between is the world of Elden Ring, and those who live in The Lands Between were blessed by Grace through the Elden Ring and the Erdtree. Those who were blessed by the Elden Ring are characterized by having a golden aura that can be seen in their eyes. However, at some point, some of those who were blessed lost their grace; they were exiled and labeled the Tarnished. As time passed, for unknown reasons, the Elden Ring was shattered and its shards were scattered across the Lands Between. The largest of these pieces were called Great Runes and were claimed by the six Demigod children of Queen Marika the Eternal, causing them to inherit different powers and have been physically changed and twisted due to being corrupted by the power of these runes.",
+    "image": "/images/lore/lands-between.webp"
   },
   {
     "slug": "the-golden-order",
     "title": "The Golden Order",
-    "category": "Factions",
-    "description": "The Golden Order is the ruling theological and political system of the Lands Between, founded upon the power of the Elden Ring and the Erdtree. It was established by Godfrey, the first Elden Lord."
+    "category": "Faction",
+    "description": "The Golden Order is the ruling theological and political system of the Lands Between, founded upon the power of the Elden Ring and the Erdtree. It was established by Godfrey, the first Elden Lord, and upheld by Queen Marika the Eternal. The Golden Order dictates that all things must live and die in accordance with the will of the Erdtree, and that the Rune of Death must remain sealed.",
+    "image": "/images/lore/golden-order.webp"
   },
   {
     "slug": "the-erdtree",
     "title": "The Erdtree",
-    "category": "Locations",
-    "description": "The Erdtree is a colossal golden tree that dominates the Lands Between. It is the source of Grace and the symbol of the Golden Order's power."
+    "category": "Location",
+    "description": "The Erdtree is a colossal golden tree that dominates the Lands Between. It is the source of Grace and the symbol of the Golden Order's power. The Erdtree is sustained by the Elden Ring and serves as the afterlife for those who die within the Lands Between — their bodies dissolve into light and return to the tree's roots.",
+    "image": "/images/lore/erdtree.webp"
+  },
+  {
+    "slug": "the-tarnished",
+    "title": "The Tarnished",
+    "category": "Lore",
+    "description": "The Tarnished are warriors who were once blessed by the Erdtree's grace but had it stripped from them and were exiled from the Lands Between. After the Elden Ring was shattered, grace was extended to the Tarnished once more, beckoning them to return and seek the Great Runes. The player character is one such Tarnished.",
+    "image": "/images/lore/lands-between.webp"
+  },
+  {
+    "slug": "the-shattering",
+    "title": "The Shattering",
+    "category": "Event",
+    "description": "The Shattering was a catastrophic war that followed the death of Godwyn the Golden and the breaking of the Elden Ring. Queen Marika shattered the Elden Ring in grief, and its fragments — the Great Runes — were claimed by her demigod children. The demigods then waged war against each other in a devastating conflict that reshaped the Lands Between.",
+    "image": "/images/lore/the-shattering.webp"
+  },
+  {
+    "slug": "grace-and-the-erdtree",
+    "title": "Grace and the Erdtree",
+    "category": "Lore",
+    "description": "Grace is a divine blessing bestowed by the Erdtree upon those deemed worthy. It manifests as a golden aura visible in the eyes of the blessed. Grace guides the Tarnished along their path through the Lands Between, appearing as golden wisps pointing toward Sites of Grace — sacred resting places that restore health and allow levelling up.",
+    "image": "/images/lore/grace.webp"
   }
 ]

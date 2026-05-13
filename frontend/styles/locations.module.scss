@@ -5,7 +5,7 @@
 
   h1 {
     font-size: 2.5rem;
-    color: #C19D53;
+    color: #c19d53;
     margin-bottom: 0.5rem;
   }
 
@@ -27,34 +27,46 @@
   border-radius: 8px;
   padding: 1.5rem;
   transition: border-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
 
   &:hover {
-    border-color: #C19D53;
+    border-color: #c19d53;
   }
 
   p {
     color: #c8b89a;
     font-size: 0.95rem;
     line-height: 1.7;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-top: 0.5rem;
   }
 }
 
 .cardHeader {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
   margin-bottom: 0.75rem;
 
   h2 {
-    color: #C19D53;
+    color: #c19d53;
     font-size: 1.1rem;
   }
 }
 
-.role, .type {
+.role,
+.type {
   font-size: 0.75rem;
   color: #6b6b6b;
   background-color: #2e2e2e;
   padding: 0.2rem 0.6rem;
   border-radius: 4px;
+  align-self: flex-start;
+  white-space: nowrap;
 }

@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Image from "next/image";
 import styles from "../styles/Home.module.scss";
 
 export default function Home() {
@@ -12,11 +13,23 @@ export default function Home() {
         />
       </Head>
       <div className={styles.hero}>
-        <h1>Welcome to the Elden Ring Wiki</h1>
-        <p>
-          Explore the lore, bosses, characters and locations of the Lands
-          Between.
-        </p>
+        <div className={styles.backgroundWrapper}>
+          <Image
+            src="/images/background.webp"
+            alt="Elden Ring Lands Between"
+            fill
+            priority
+            className={styles.backgroundImage}
+          />
+          <div className={styles.overlay} />
+        </div>
+        <div className={styles.content}>
+          <h1>Elden Ring Wiki</h1>
+          <p>
+            Explore the lore, bosses, characters and locations of the Lands
+            Between.
+          </p>
+        </div>
       </div>
     </>
   );

@@ -1,48 +1,65 @@
 .container {
-  max-width: 1100px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 2rem;
+}
 
+.back {
+  display: inline-block;
+  color: #c19d53;
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.imageWrapper {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  border: 1px solid #2e2e2e;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.content {
   h1 {
-    color: #c19d53;
     font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+    color: #c19d53;
+    margin-bottom: 1rem;
   }
 
   p {
-    color: #c19d53;
-    margin-bottom: 1.5rem;
+    color: #c8b89a;
+    line-height: 1.8;
+    font-size: 1.05rem;
   }
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.card {
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
   background-color: #1a1a1a;
   border: 1px solid #2e2e2e;
   border-radius: 8px;
-  padding: 1.5rem;
-  cursor: pointer;
-  transition: border-color 0.2s ease;
 
-  h2 {
-    color: #c19d53;
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-  }
-
-  p,
   span {
-    color: #6b6b6b;
-    font-size: 0.9rem;
-  }
+    color: #c8b89a;
+    font-size: 0.95rem;
 
-  &:hover {
-    border-color: #c19d53;
+    strong {
+      color: #c19d53;
+    }
   }
 }

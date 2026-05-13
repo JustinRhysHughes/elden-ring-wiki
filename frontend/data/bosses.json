@@ -5,7 +5,8 @@
     "location": "Stormhill",
     "description": "A powerful demigod who guards the entrance to Stormveil Castle. Margit is one of the first major challenges faced by Tarnished seeking to claim the Elden Ring.",
     "difficulty": "Hard",
-    "drops": "Talisman Pouch"
+    "drops": "Talisman Pouch",
+    "image": "/images/bosses/margit.webp"
   },
   {
     "slug": "godrick-the-grafted",
@@ -13,7 +14,8 @@
     "location": "Stormveil Castle",
     "description": "A demigod and descendant of Godfrey, the first Elden Lord. Godrick grafts the limbs of fallen warriors onto his body to gain their strength.",
     "difficulty": "Hard",
-    "drops": "Shardbearing Soul, Godrick's Great Rune"
+    "drops": "Shardbearing Soul, Godrick's Great Rune",
+    "image": "/images/bosses/godrick.png"
   },
   {
     "slug": "rennala-queen-of-the-full-moon",
@@ -21,6 +23,43 @@
     "location": "Raya Lucaria Academy",
     "description": "Once the head of the Carian royal family and a master sorceress, Rennala was shattered by the loss of her Erdleaf when her husband Radagon left her.",
     "difficulty": "Medium",
-    "drops": "Remembrance of the Full Moon Queen, Great Rune of the Unborn"
+    "drops": "Remembrance of the Full Moon Queen, Great Rune of the Unborn",
+    "image": "/images/bosses/rennala.jpg"
+  },
+  {
+    "slug": "malenia-blade-of-miquella",
+    "name": "Malenia, Blade of Miquella",
+    "location": "Elphael, Brace of the Haligtree",
+    "description": "Malenia is the twin of Miquella and is widely considered the most fearsome warrior in the Lands Between. She carries the Scarlet Rot within her body and has never once known defeat.",
+    "difficulty": "Very Hard",
+    "drops": "Remembrance of the Rot Goddess, Malenia's Great Rune",
+    "image": "/images/bosses/malenia.webp"
+  },
+  {
+    "slug": "maliketh-the-black-blade",
+    "name": "Maliketh, the Black Blade",
+    "location": "Crumbling Farum Azula",
+    "description": "The shadow and half-brother of Queen Marika. Maliketh is the guardian of the Rune of Death, sealed within the cursed blade Destined Death.",
+    "difficulty": "Very Hard",
+    "drops": "Remembrance of the Black Blade",
+    "image": "/images/bosses/maliketh.webp"
+  },
+  {
+    "slug": "godfrey-hoarah-loux",
+    "name": "Godfrey, First Elden Lord / Hoarah Loux",
+    "location": "Leyndell, Royal Capital",
+    "description": "Godfrey was the first Elden Lord and consort of Queen Marika. After being stripped of his grace he became Hoarah Loux, a fierce chieftain who returns to the Lands Between to reclaim his throne.",
+    "difficulty": "Very Hard",
+    "drops": "Remembrance of Hoarah Loux",
+    "image": "/images/bosses/godfrey.webp"
+  },
+  {
+    "slug": "mohg-lord-of-blood",
+    "name": "Mohg, Lord of Blood",
+    "location": "Mohgwyn Palace",
+    "description": "Mohg is a demigod and twin of Morgott. He is the lord of the Mohgwyn Dynasty and seeks to elevate Miquella to godhood using the power of the Formless Mother.",
+    "difficulty": "Very Hard",
+    "drops": "Remembrance of the Blood Lord, Mohg's Great Rune",
+    "image": "/images/bosses/mohg.webp"
   }
 ]

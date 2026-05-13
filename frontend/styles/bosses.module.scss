@@ -4,13 +4,13 @@
   padding: 2rem;
 
   h1 {
-    color: #c19d53;
     font-size: 2.5rem;
+    color: #c19d53;
     margin-bottom: 0.5rem;
   }
 
   p {
-    color: #c19d53;
+    color: #c8b89a;
     margin-bottom: 1.5rem;
   }
 }
@@ -29,20 +29,29 @@
   padding: 1.5rem;
   cursor: pointer;
   transition: border-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 180px;
+
+  &:hover {
+    border-color: #c19d53;
+  }
 
   h2 {
     color: #c19d53;
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.05rem;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   p,
   span {
     color: #6b6b6b;
-    font-size: 0.9rem;
-  }
-
-  &:hover {
-    border-color: #c19d53;
+    font-size: 0.85rem;
+    flex-shrink: 0;
   }
 }
