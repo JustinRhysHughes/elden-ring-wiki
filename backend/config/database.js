@@ -1,21 +1,24 @@
 // Database configuration file
-// Creates and exports the Sequelize instance connected to an SQLite database
-// Handles connection errors gracefully with try/catch
+// Creates and exports the Sequelize instance connected to Supabase PostgreSQL
 // All sensitive connection details are loaded from environment variables
 
 const { Sequelize } = require("sequelize");
 require("dotenv").config();
 
-// Create a new Sequelize instance using SQLite as the dialect
-// DB_STORAGE defines the file path for the SQLite database file
-const sequelize = new Sequelize({
-  dialect: "sqlite",
-  storage: process.env.DB_STORAGE,
+// Create Sequelize instance using the DATABASE_URL connection string
+// SSL is required for Supabase connections
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+  dialect: "postgres",
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
   logging: false,
 });
 
 // Test the database connection
-// If the connection fails, log a user-friendly error message
 const testConnection = async () => {
   try {
     await sequelize.authenticate();

@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "projects": [
+    {
+      "name": "elden-ring-frontend",
+      "rootDirectory": "frontend"
+    },
+    {
+      "name": "elden-ring-backend",
+      "rootDirectory": "backend"
+    }
+  ]
+}
