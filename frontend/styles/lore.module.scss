@@ -5,7 +5,7 @@
 
   h1 {
     font-size: 2.5rem;
-    color: #C19D53;
+    color: #c19d53;
     margin-bottom: 0.5rem;
   }
 
@@ -34,11 +34,11 @@
   height: 140px;
 
   &:hover {
-    border-color: #C19D53;
+    border-color: #c19d53;
   }
 
   h2 {
-    color: #C19D53;
+    color: #c19d53;
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
     display: -webkit-box;
@@ -51,5 +51,29 @@
     color: #6b6b6b;
     font-size: 0.9rem;
     margin-top: auto;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.addBtn {
+  background-color: #c19d53;
+  color: #0a0a0a;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.85;
+    text-decoration: none;
   }
 }

@@ -8,7 +8,7 @@
 
   .logo a {
     font-size: 1.4rem;
-    color: #c19d53;
+    color: #C19D53;
     font-weight: bold;
     text-decoration: none;
   }
@@ -21,14 +21,67 @@
     padding: 0;
 
     a {
-      color: #c19d53;
+      color: #c8b89a;
       text-decoration: none;
       font-size: 0.95rem;
       transition: color 0.2s ease;
 
       &:hover {
-        color: #c19d53;
+        color: #C19D53;
       }
+    }
+  }
+
+  .auth {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .username {
+    color: #C19D53;
+    font-size: 0.9rem;
+  }
+
+  .loginBtn {
+    color: #c8b89a;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #C19D53;
+    }
+  }
+
+  .registerBtn {
+    background-color: #C19D53;
+    color: #0a0a0a;
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+
+  .logoutBtn {
+    background: none;
+    border: 1px solid #2e2e2e;
+    color: #6b6b6b;
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: #C19D53;
+      color: #C19D53;
     }
   }
 }

@@ -11,38 +11,35 @@ const { sequelize } = require("./models");
 const authRoutes = require("./routes/authRoutes");
 const bossRoutes = require("./routes/bossRoutes");
 const locationRoutes = require("./routes/locationRoutes");
+const loreRoutes = require("./routes/loreRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-// Middleware
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
-// Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/bosses", bossRoutes);
 app.use("/api/locations", locationRoutes);
+app.use("/api/lore", loreRoutes);
+app.use("/api/users", userRoutes);
 
-// Health check route
 app.get("/", (req, res) => {
   res.json({ message: "Elden Ring API is running" });
 });
 
-// 404 handler for undefined routes
 app.use((req, res) => {
   res.status(404).json({ error: "Route not found" });
 });
 
-// Global error handler - no stack traces returned to client
 app.use((err, req, res, next) => {
   console.error("Unhandled error:", err);
   res.status(500).json({ error: "Internal server error" });
 });
 
-// Sync database and start server
-// If database connection fails, display user-friendly error and exit
 sequelize
   .sync({ force: false })
   .then(() => {
@@ -52,14 +49,10 @@ sequelize
     });
   })
   .catch((err) => {
-    console.error(
-      "Failed to connect to database - please check your configuration",
-    );
-    console.error("Error details:", err.message);
+    console.error("Failed to connect to database:", err.message);
     process.exit(1);
   });
 
-// Handle unexpected disconnects during runtime
 process.on("unhandledRejection", (err) => {
   console.error("Unhandled database rejection:", err.message);
 });

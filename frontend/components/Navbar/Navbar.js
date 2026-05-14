@@ -1,7 +1,17 @@
 import Link from "next/link";
+import { useAuth } from "../../context/AuthContext";
+import { useRouter } from "next/router";
 import styles from "./Navbar.module.scss";
 
 export default function Navbar() {
+  const { user, logout } = useAuth();
+  const router = useRouter();
+
+  const handleLogout = () => {
+    logout();
+    router.push("/");
+  };
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
@@ -30,6 +40,27 @@ export default function Navbar() {
           <Link href="/contact">Contact</Link>
         </li>
       </ul>
+      <div className={styles.auth}>
+        {user ? (
+          <>
+            <Link href="/account" className={styles.username}>
+              👤 {user.username}
+            </Link>
+            <button onClick={handleLogout} className={styles.logoutBtn}>
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <Link href="/login" className={styles.loginBtn}>
+              Login
+            </Link>
+            <Link href="/register" className={styles.registerBtn}>
+              Register
+            </Link>
+          </>
+        )}
+      </div>
     </nav>
   );
 }

@@ -26,6 +26,21 @@ const getAllBosses = async (req, res) => {
   }
 };
 
+// GET single boss by slug
+const getBossBySlug = async (req, res) => {
+  try {
+    const boss = await Boss.findOne({
+      where: { slug: req.params.slug },
+      include: [{ model: Location, attributes: ["name", "region"] }],
+    });
+    if (!boss) return res.status(404).json({ error: "Boss not found" });
+    res.json(boss);
+  } catch (err) {
+    console.error("Error fetching boss:", err);
+    res.status(500).json({ error: "Failed to fetch boss" });
+  }
+};
+
 // GET single boss by id
 // Returns a single boss with its associated location
 const getBossById = async (req, res) => {
@@ -189,6 +204,7 @@ const deleteBoss = async (req, res) => {
 module.exports = {
   getAllBosses,
   getBossById,
+  getBossBySlug,
   createBoss,
   updateBoss,
   patchBoss,

@@ -6,6 +6,7 @@ const sequelize = require("../config/database");
 const Boss = require("./Boss");
 const Location = require("./Location");
 const User = require("./User");
+const Lore = require("./Lore");
 
 // Associations
 // A Location can have many Bosses
@@ -24,4 +25,5 @@ module.exports = {
   Boss,
   Location,
   User,
+  Lore,
 };

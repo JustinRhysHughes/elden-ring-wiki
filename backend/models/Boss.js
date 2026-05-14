@@ -6,12 +6,25 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
 const Boss = sequelize.define("Boss", {
-  // Primary key - auto incrementing integer
+  // Primary key
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
     allowNull: false,
+  },
+  // URL-friendly slug for routing
+  slug: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: {
+      msg: "Slug already exists",
+    },
+    validate: {
+      notEmpty: {
+        msg: "Slug cannot be empty",
+      },
+    },
   },
   // Name of the boss
   name: {
@@ -27,7 +40,7 @@ const Boss = sequelize.define("Boss", {
       },
     },
   },
-  // Difficulty rating of the boss
+  // Difficulty rating
   difficulty: {
     type: DataTypes.ENUM("Easy", "Medium", "Hard", "Very Hard"),
     allowNull: false,
@@ -38,7 +51,7 @@ const Boss = sequelize.define("Boss", {
       },
     },
   },
-  // Item dropped by the boss on defeat
+  // Item dropped on defeat
   drops: {
     type: DataTypes.STRING,
     allowNull: true,
@@ -46,6 +59,16 @@ const Boss = sequelize.define("Boss", {
   // Description of the boss
   description: {
     type: DataTypes.TEXT,
+    allowNull: true,
+  },
+  // Optional image path
+  image: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  // Location name for display (separate from the FK relationship)
+  location: {
+    type: DataTypes.STRING,
     allowNull: true,
   },
   // Foreign key linking boss to a location

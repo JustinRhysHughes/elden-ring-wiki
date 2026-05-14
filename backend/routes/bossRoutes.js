@@ -9,6 +9,7 @@ const { validate, bossSchema } = require("../middleware/validate");
 const {
   getAllBosses,
   getBossById,
+  getBossBySlug,
   createBoss,
   updateBoss,
   patchBoss,
@@ -17,9 +18,10 @@ const {
 
 // Public routes
 router.get("/", getAllBosses);
+router.get("/slug/:slug", getBossBySlug);
 router.get("/:id", getBossById);
 
-// Admin only routes - Joi validation runs before controller
+// Admin only routes
 router.post("/", verifyToken, isAdmin, validate(bossSchema), createBoss);
 router.put("/:id", verifyToken, isAdmin, validate(bossSchema), updateBoss);
 router.patch("/:id", verifyToken, isAdmin, patchBoss);

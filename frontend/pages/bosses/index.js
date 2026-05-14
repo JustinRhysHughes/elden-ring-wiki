@@ -1,12 +1,24 @@
 import Link from "next/link";
+import { useAuth } from "../../context/AuthContext";
 import bosses from "../../data/bosses.json";
 import styles from "../../styles/bosses.module.scss";
 
 export default function Bosses() {
+  const { user } = useAuth();
+
   return (
     <div className={styles.container}>
-      <h1>Bosses</h1>
-      <p>The most fearsome enemies of the Lands Between.</p>
+      <div className={styles.header}>
+        <div>
+          <h1>Bosses</h1>
+          <p>The most fearsome enemies of the Lands Between.</p>
+        </div>
+        {user?.isAdmin && (
+          <Link href="/bosses/add" className={styles.addBtn}>
+            + Add Boss
+          </Link>
+        )}
+      </div>
       <div className={styles.grid}>
         {bosses.map((boss) => (
           <Link href={`/bosses/${boss.slug}`} key={boss.slug}>
