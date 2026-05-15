@@ -21,6 +21,7 @@ const PORT = process.env.PORT || 4000;
 const allowedOrigins = [
   "http://localhost:3000",
   "https://elden-ring-wiki.vercel.app",
+  "https://elden-ring-wiki-git-main-justin-hughes-projects-3b7faa1f.vercel.app",
 ];
 
 // CORS configuration
