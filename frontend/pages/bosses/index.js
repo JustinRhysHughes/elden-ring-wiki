@@ -3,7 +3,9 @@ import { useAuth } from "../../context/AuthContext";
 import styles from "../../styles/bosses.module.scss";
 
 export async function getServerSideProps() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/bosses`);
+  const apiUrl =
+    process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
+  const res = await fetch(`${apiUrl}/api/bosses`);
   const bosses = await res.json();
   return { props: { bosses } };
 }

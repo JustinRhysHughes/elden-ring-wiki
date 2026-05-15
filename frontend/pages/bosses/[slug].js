@@ -4,23 +4,11 @@ import { useRouter } from "next/router";
 import { useAuth } from "../../context/AuthContext";
 import styles from "../../styles/bossDetail.module.scss";
 
-export async function getStaticPaths() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/bosses`);
-  const bosses = await res.json();
-
-  const paths = bosses.map((boss) => ({
-    params: { slug: boss.slug },
-  }));
-
-  return { paths, fallback: false };
-}
-
-export async function getStaticProps({ params }) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/bosses/slug/${params.slug}`,
-  );
+export async function getServerSideProps({ params }) {
+  const apiUrl =
+    process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
+  const res = await fetch(`${apiUrl}/api/bosses/slug/${params.slug}`);
   const boss = await res.json();
-
   return { props: { boss } };
 }
 

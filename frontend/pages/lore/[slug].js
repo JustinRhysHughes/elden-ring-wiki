@@ -4,23 +4,11 @@ import { useRouter } from "next/router";
 import { useAuth } from "../../context/AuthContext";
 import styles from "../../styles/loreDetail.module.scss";
 
-export async function getStaticPaths() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/lore`);
-  const lore = await res.json();
-
-  const paths = lore.map((entry) => ({
-    params: { slug: entry.slug },
-  }));
-
-  return { paths, fallback: false };
-}
-
-export async function getStaticProps({ params }) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/lore/${params.slug}`,
-  );
+export async function getServerSideProps({ params }) {
+  const apiUrl =
+    process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
+  const res = await fetch(`${apiUrl}/api/lore/${params.slug}`);
   const entry = await res.json();
-
   return { props: { entry } };
 }
 
