@@ -2,6 +2,8 @@
 // Creates and exports the Sequelize instance connected to Supabase PostgreSQL
 // All sensitive connection details are loaded from environment variables
 
+// Explicitly require pg to ensure Vercel includes it in the serverless bundle
+const pg = require("pg");
 const { Sequelize } = require("sequelize");
 require("dotenv").config();
 
@@ -9,6 +11,7 @@ require("dotenv").config();
 // SSL is required for Supabase connections
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: "postgres",
+  dialectModule: pg,
   dialectOptions: {
     ssl: {
       require: true,
