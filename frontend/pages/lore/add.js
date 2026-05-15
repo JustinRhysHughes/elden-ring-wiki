@@ -32,7 +32,7 @@ export default function AddLore() {
     setError(null);
 
     try {
-      const res = await fetch("http://localhost:4000/api/lore", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/lore`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

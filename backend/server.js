@@ -41,7 +41,7 @@ app.use(
 );
 
 // Handle preflight requests
-app.options("*", cors());
+app.options("/{*path}", cors());
 
 // Security middleware
 app.use(helmet());

@@ -2,18 +2,25 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useAuth } from "../../context/AuthContext";
-import bosses from "../../data/bosses.json";
 import styles from "../../styles/bossDetail.module.scss";
 
 export async function getStaticPaths() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/bosses`);
+  const bosses = await res.json();
+
   const paths = bosses.map((boss) => ({
     params: { slug: boss.slug },
   }));
+
   return { paths, fallback: false };
 }
 
 export async function getStaticProps({ params }) {
-  const boss = bosses.find((b) => b.slug === params.slug);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/bosses/slug/${params.slug}`,
+  );
+  const boss = await res.json();
+
   return { props: { boss } };
 }
 
@@ -25,10 +32,13 @@ export default function BossDetail({ boss }) {
     if (!confirm(`Are you sure you want to delete ${boss.name}?`)) return;
 
     try {
-      const res = await fetch(`http://localhost:4000/api/bosses/${boss.id}`, {
-        method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/bosses/${boss.id}`,
+        {
+          method: "DELETE",
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
 
       if (res.ok) {
         router.push("/bosses");

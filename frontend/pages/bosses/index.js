@@ -1,9 +1,14 @@
 import Link from "next/link";
 import { useAuth } from "../../context/AuthContext";
-import bosses from "../../data/bosses.json";
 import styles from "../../styles/bosses.module.scss";
 
-export default function Bosses() {
+export async function getServerSideProps() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/bosses`);
+  const bosses = await res.json();
+  return { props: { bosses } };
+}
+
+export default function Bosses({ bosses }) {
   const { user } = useAuth();
 
   return (

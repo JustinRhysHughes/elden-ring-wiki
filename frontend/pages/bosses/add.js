@@ -24,7 +24,7 @@ export default function AddBoss() {
       return;
     }
     // Fetch locations for the dropdown
-    fetch("http://localhost:4000/api/locations")
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/locations`)
       .then((res) => res.json())
       .then((data) => setLocations(data))
       .catch(() => setError("Failed to load locations"));
@@ -41,7 +41,7 @@ export default function AddBoss() {
     setError(null);
 
     try {
-      const res = await fetch("http://localhost:4000/api/bosses", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/bosses`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -53,14 +53,17 @@ export default function Account() {
     setDetailsMsg(null);
 
     try {
-      const res = await fetch(`http://localhost:4000/api/users/${user.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/users/${user.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(details),
         },
-        body: JSON.stringify(details),
-      });
+      );
 
       const data = await res.json();
 
@@ -88,7 +91,7 @@ export default function Account() {
 
     try {
       const res = await fetch(
-        `http://localhost:4000/api/users/${user.id}/password`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/users/${user.id}/password`,
         {
           method: "PUT",
           headers: {

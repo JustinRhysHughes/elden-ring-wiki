@@ -1,9 +1,14 @@
 import Link from "next/link";
 import { useAuth } from "../../context/AuthContext";
-import lore from "../../data/lore.json";
 import styles from "../../styles/lore.module.scss";
 
-export default function Lore() {
+export async function getServerSideProps() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/lore`);
+  const lore = await res.json();
+  return { props: { lore } };
+}
+
+export default function Lore({ lore }) {
   const { user } = useAuth();
 
   return (
