@@ -11,6 +11,7 @@ export default function AddLore() {
     title: "",
     category: "",
     description: "",
+    image: "",
   });
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -100,6 +101,18 @@ export default function AddLore() {
               rows={6}
               required
               placeholder="Lore description..."
+            />
+          </div>
+          <div className={styles.field}>
+            <label>
+              Image URL <span className={styles.optional}>(optional)</span>
+            </label>
+            <input
+              type="text"
+              name="image"
+              value={formData.image}
+              onChange={handleChange}
+              placeholder="e.g. /images/bosses/boss-name.webp"
             />
           </div>
           <div className={styles.buttons}>

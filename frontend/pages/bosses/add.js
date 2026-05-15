@@ -13,6 +13,7 @@ export default function AddBoss() {
     drops: "",
     description: "",
     LocationId: "",
+    image: "",
   });
   const [locations, setLocations] = useState([]);
   const [error, setError] = useState(null);
@@ -121,6 +122,18 @@ export default function AddBoss() {
                 </option>
               ))}
             </select>
+          </div>
+          <div className={styles.field}>
+            <label>
+              Image URL <span className={styles.optional}>(optional)</span>
+            </label>
+            <input
+              type="text"
+              name="image"
+              value={formData.image}
+              onChange={handleChange}
+              placeholder="e.g. /images/bosses/boss-name.webp"
+            />
           </div>
           <div className={styles.field}>
             <label>Drops</label>

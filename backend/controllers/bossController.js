@@ -80,25 +80,25 @@ const createBoss = async (req, res) => {
       return res.status(404).json({ error: "Location not found" });
     }
 
+    // Auto-generate slug from name
+    const slug = name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "");
+
     const boss = await Boss.create({
+      slug,
       name,
       difficulty,
       drops,
       description,
+      location: location.name,
       LocationId,
     });
 
     res.status(201).json({ message: "Boss created successfully", boss });
   } catch (err) {
     console.error("Error creating boss:", err);
-    if (
-      err.name === "SequelizeConnectionError" ||
-      err.name === "SequelizeConnectionRefusedError"
-    ) {
-      return res.status(503).json({
-        error: "Database is currently unavailable, please try again later",
-      });
-    }
     if (err.name === "SequelizeValidationError") {
       return res.status(400).json({
         error: err.errors.map((e) => e.message),

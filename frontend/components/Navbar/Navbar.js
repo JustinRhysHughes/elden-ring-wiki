@@ -43,6 +43,11 @@ export default function Navbar() {
       <div className={styles.auth}>
         {user ? (
           <>
+            {user.isAdmin && (
+              <Link href="/admin" className={styles.adminBtn}>
+                Admin
+              </Link>
+            )}
             <Link href="/account" className={styles.username}>
               👤 {user.username}
             </Link>

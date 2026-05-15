@@ -75,4 +75,61 @@ const updateUserPassword = async (req, res) => {
   }
 };
 
-module.exports = { updateUserDetails, updateUserPassword };
+// GET all users - admin only
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.findAll({
+      attributes: [
+        "id",
+        "username",
+        "name",
+        "email",
+        "mobile",
+        "isAdmin",
+        "createdAt",
+      ],
+    });
+    res.json(users);
+  } catch (err) {
+    console.error("Error fetching users:", err);
+    res.status(500).json({ error: "Failed to fetch users" });
+  }
+};
+
+// PUT toggle admin status - admin only
+const toggleAdminStatus = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Prevent admin from removing their own admin status
+    if (req.user.id === parseInt(id)) {
+      return res
+        .status(400)
+        .json({ error: "Cannot modify your own admin status" });
+    }
+
+    const user = await User.findByPk(id);
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    await user.update({ isAdmin: req.body.isAdmin });
+
+    res.json({
+      message: "User updated successfully",
+      user: {
+        id: user.id,
+        username: user.username,
+        isAdmin: user.isAdmin,
+      },
+    });
+  } catch (err) {
+    console.error("Error updating admin status:", err);
+    res.status(500).json({ error: "Failed to update user" });
+  }
+};
+
+module.exports = {
+  updateUserDetails,
+  updateUserPassword,
+  getAllUsers,
+  toggleAdminStatus,
+};
