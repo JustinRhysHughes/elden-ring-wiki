@@ -1,103 +1,274 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+// * Main navbar container
 .navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-  background-color: #111;
-  border-bottom: 1px solid #2e2e2e;
+  position: sticky;
+  top: 0;
+  z-index: $z-navbar;
+  height: $navbar-height;
+  @include flex-between;
+  padding: 0 $space-lg;
 
-  .logo a {
-    font-size: 1.4rem;
-    color: #c19d53;
-    font-weight: bold;
-    text-decoration: none;
+  // ~ Glassmorphism dark background
+  background: rgba(8, 8, 8, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid $color-border;
+
+  // ~ Subtle gold line at very bottom
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      $color-gold-dim,
+      transparent
+    );
   }
+}
 
-  .navLinks {
-    display: flex;
-    gap: 1.5rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+// * Logo
+.logo {
+  a {
+    font-family: $font-display;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: $color-gold;
+    text-decoration: none;
+    transition: color $transition-fast;
 
-    a {
-      color: #c8b89a;
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: color 0.2s ease;
-
-      &:hover {
-        color: #c19d53;
-      }
+    // ~ Small decorative line under logo
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: $color-gold;
+      transition: width $transition-normal;
     }
-  }
-
-  .auth {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .username {
-    color: #c19d53;
-    font-size: 0.9rem;
-  }
-
-  .loginBtn {
-    color: #c8b89a;
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: color 0.2s ease;
 
     &:hover {
-      color: #c19d53;
-    }
-  }
-
-  .registerBtn {
-    background-color: #c19d53;
-    color: #0a0a0a;
-    padding: 0.4rem 1rem;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: bold;
-    transition: opacity 0.2s ease;
-
-    &:hover {
-      opacity: 0.85;
-    }
-  }
-
-  .logoutBtn {
-    background: none;
-    border: 1px solid #2e2e2e;
-    color: #6b6b6b;
-    padding: 0.4rem 1rem;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-
-    &:hover {
-      border-color: #c19d53;
-      color: #c19d53;
+      color: $color-gold-light;
+      &::after { width: 100%; }
     }
   }
 }
 
-.adminBtn {
-  color: #c19d53;
+// * Navigation links
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: $space-lg;
+  list-style: none;
+
+  @include tablet {
+    display: none;
+  }
+
+  a {
+    font-family: $font-display;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: $color-text-muted;
+    text-decoration: none;
+    transition: color $transition-fast;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: $color-gold;
+      transition: width $transition-normal;
+    }
+
+    &:hover {
+      color: $color-gold;
+      &::after { width: 100%; }
+    }
+  }
+}
+
+// * Auth section
+.auth {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+}
+
+.username {
+  font-family: $font-display;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: $color-gold;
   text-decoration: none;
-  font-size: 0.9rem;
-  border: 1px solid #c19d53;
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
-  transition: all 0.2s ease;
+  transition: color $transition-fast;
 
   &:hover {
-    background-color: #c19d53;
-    color: #0a0a0a;
+    color: $color-gold-light;
+  }
+}
+
+.adminBtn {
+  font-family: $font-display;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: $color-crimson;
+  text-decoration: none;
+  border: 1px solid rgba(139, 26, 26, 0.4);
+  padding: 0.3rem 0.75rem;
+  border-radius: 2px;
+  transition: all $transition-fast;
+
+  &:hover {
+    background-color: $color-crimson;
+    color: $color-text;
+    border-color: $color-crimson;
     text-decoration: none;
+  }
+}
+
+.loginBtn {
+  font-family: $font-display;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: $color-text-muted;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-gold;
+  }
+}
+
+.registerBtn {
+  font-family: $font-display;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: transparent;
+  color: $color-gold;
+  border: 1px solid $color-gold;
+  padding: 0.4rem 1rem;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all $transition-fast;
+
+  &:hover {
+    background-color: $color-gold;
+    color: $color-bg;
+    text-decoration: none;
+  }
+}
+
+.logoutBtn {
+  font-family: $font-display;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: none;
+  border: 1px solid $color-border;
+  color: $color-text-muted;
+  padding: 0.4rem 1rem;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    border-color: $color-text-muted;
+    color: $color-text;
+  }
+}
+
+// * Mobile hamburger menu
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: $space-sm;
+  background: none;
+  border: none;
+
+  @include tablet {
+    display: flex;
+  }
+
+  span {
+    display: block;
+    width: 24px;
+    height: 1px;
+    background-color: $color-gold;
+    transition: all $transition-normal;
+  }
+
+  // ~ Active state transforms to X
+  &.open {
+    span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+    span:nth-child(2) {
+      opacity: 0;
+    }
+    span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+  }
+}
+
+// * Mobile menu dropdown
+.mobileMenu {
+  display: none;
+  position: absolute;
+  top: $navbar-height;
+  left: 0;
+  right: 0;
+  background: rgba(8, 8, 8, 0.98);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid $color-border;
+  padding: $space-lg;
+  z-index: $z-navbar;
+
+  @include tablet {
+    display: block;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+    margin-bottom: $space-lg;
+  }
+
+  a {
+    font-family: $font-display;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: $color-text-muted;
+    text-decoration: none;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $color-gold;
+    }
   }
 }

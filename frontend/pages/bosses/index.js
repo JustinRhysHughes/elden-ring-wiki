@@ -16,9 +16,12 @@ export default function Bosses({ bosses }) {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <div>
+        <div className={styles.headerLeft}>
+          <span className={styles.sectionLabel}>Field Guide</span>
           <h1>Bosses</h1>
-          <p>The most fearsome enemies of the Lands Between.</p>
+          <p className={styles.subtitle}>
+            The most fearsome enemies of the Lands Between
+          </p>
         </div>
         {user?.isAdmin && (
           <Link href="/bosses/add" className={styles.addBtn}>
@@ -28,11 +31,23 @@ export default function Bosses({ bosses }) {
       </div>
       <div className={styles.grid}>
         {bosses.map((boss) => (
-          <Link href={`/bosses/${boss.slug}`} key={boss.slug}>
-            <div className={styles.card}>
-              <h2>{boss.name}</h2>
-              <p>{boss.location}</p>
-              <span>{boss.difficulty}</span>
+          <Link
+            href={`/bosses/${boss.slug}`}
+            key={boss.slug}
+            className={styles.card}
+          >
+            <div className={styles.cardInner}>
+              <div className={styles.cardMeta}>
+                <span
+                  className={styles.difficulty}
+                  data-difficulty={boss.difficulty}
+                >
+                  {boss.difficulty}
+                </span>
+              </div>
+              <span className={styles.cardName}>{boss.name}</span>
+              <span className={styles.cardLocation}>{boss.location}</span>
+              <span className={styles.arrow}>→</span>
             </div>
           </Link>
         ))}

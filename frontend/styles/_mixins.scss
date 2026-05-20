@@ -1,19 +1,79 @@
-// Flex centre
+@use 'variables' as *;
+
+// * Layout mixins
+
+// ~ Centre content with max-width constraint
+@mixin container {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 $space-lg;
+}
+
+// ~ Flex centre both axes
 @mixin flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-// Responsive breakpoints
+// ~ Flex between — space between children
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// * Responsive breakpoints
+
+// ~ Below 1024px (tablet)
+@mixin tablet {
+  @media (max-width: 1024px) { @content; }
+}
+
+// ~ Below 768px (mobile)
 @mixin mobile {
-  @media (max-width: 768px) {
-    @content;
+  @media (max-width: 768px) { @content; }
+}
+
+// ~ Below 480px (small mobile)
+@mixin small-mobile {
+  @media (max-width: 480px) { @content; }
+}
+
+// * Visual effects
+
+// ~ Gold text gradient
+@mixin gold-gradient-text {
+  background: linear-gradient(135deg, $color-gold-light, $color-gold, #8B6B2A);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// ~ Cinematic vignette overlay
+@mixin vignette {
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.8) 100%);
+    pointer-events: none;
   }
 }
 
-@mixin tablet {
-  @media (max-width: 1024px) {
-    @content;
-  }
+// ~ Diagonal clip bottom edge
+@mixin clip-diagonal {
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+// ~ Gold border left accent
+@mixin gold-border-left {
+  border-left: 2px solid $color-gold;
+  padding-left: $space-md;
+}
+
+// ~ Subtle noise texture using gradient
+@mixin noise-texture {
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
 }

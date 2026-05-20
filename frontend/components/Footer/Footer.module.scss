@@ -1,19 +1,83 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
 .footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-  background-color: #111;
-  border-top: 1px solid #2e2e2e;
-  color: #6b6b6b;
-  font-size: 0.85rem;
+  @include flex-between;
+  padding: $space-lg $space-lg * 1.5;
+  background: $color-surface;
+  border-top: 1px solid $color-border;
+  position: relative;
 
-  a {
-    color: #c19d53;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
+  // * Gold line at top
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      $color-gold-dim,
+      transparent
+    );
   }
+
+  @include mobile {
+    flex-direction: column;
+    gap: $space-md;
+    text-align: center;
+  }
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+}
+
+.brand {
+  font-family: $font-display;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: $color-gold;
+}
+
+.copy {
+  font-family: $font-body;
+  font-size: 0.85rem;
+  color: $color-text-muted;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: $space-xs;
+
+  @include mobile {
+    align-items: center;
+  }
+}
+
+.externalLink {
+  font-family: $font-display;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $color-text-muted;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-gold;
+  }
+}
+
+.disclaimer {
+  font-size: 0.75rem;
+  color: $color-text-dim;
+  font-style: italic;
 }

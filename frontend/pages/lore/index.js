@@ -16,9 +16,12 @@ export default function Lore({ lore }) {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <div>
+        <div className={styles.headerLeft}>
+          <span className={styles.sectionLabel}>Chronicles</span>
           <h1>Lore</h1>
-          <p>Uncover the secrets of the Lands Between.</p>
+          <p className={styles.subtitle}>
+            Uncover the shattered history of the Lands Between
+          </p>
         </div>
         {user?.isAdmin && (
           <Link href="/lore/add" className={styles.addBtn}>
@@ -28,10 +31,15 @@ export default function Lore({ lore }) {
       </div>
       <div className={styles.grid}>
         {lore.map((entry) => (
-          <Link href={`/lore/${entry.slug}`} key={entry.slug}>
-            <div className={styles.card}>
-              <h2>{entry.title}</h2>
-              <span>{entry.category}</span>
+          <Link
+            href={`/lore/${entry.slug}`}
+            key={entry.slug}
+            className={styles.card}
+          >
+            <div className={styles.cardInner}>
+              <span className={styles.category}>{entry.category}</span>
+              <span className={styles.cardTitle}>{entry.title}</span>
+              <span className={styles.arrow}>→</span>
             </div>
           </Link>
         ))}

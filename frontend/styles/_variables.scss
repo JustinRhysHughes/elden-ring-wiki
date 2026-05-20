@@ -1,17 +1,51 @@
-// Colours
-$color-bg: #0a0a0a;
-$color-surface: #1a1a1a;
-$color-gold: #c19d53;
-$color-text: #c19d53;
-$color-text-muted: #6b6b6b;
-$color-border: #2e2e2e;
+// * Colour Palette
+// ! Primary brand colours — do not modify without updating all references
+$color-bg:          #080808;
+$color-surface:     #0f0f0f;
+$color-surface-2:   #161616;
+$color-border:      #1e1e1e;
+$color-border-gold: rgba(193, 157, 83, 0.3);
 
-// Spacing
-$spacing-sm: 0.5rem;
-$spacing-md: 1rem;
-$spacing-lg: 2rem;
-$spacing-xl: 4rem;
+// ~ Gold accent family
+$color-gold:        #C19D53;
+$color-gold-light:  #D4B06A;
+$color-gold-dim:    rgba(193, 157, 83, 0.15);
 
-// Typography
-$font-serif: "Georgia", serif;
-$font-sans: "Arial", sans-serif;
+// ~ Crimson accent — bosses, danger, death
+$color-crimson:     #8B1A1A;
+$color-crimson-dim: rgba(139, 26, 26, 0.15);
+
+// ~ Text colours
+$color-text:        #E8DCC8;
+$color-text-muted:  #6B6357;
+$color-text-dim:    #3A3530;
+
+// * Typography
+// ! Cinzel for all headings and display text
+// ! Crimson Text for body copy
+$font-display: 'Cinzel', 'Georgia', serif;
+$font-body:    'Crimson Text', 'Georgia', serif;
+$font-mono:    'Courier New', monospace;
+
+// * Spacing scale
+$space-xs:  0.25rem;
+$space-sm:  0.5rem;
+$space-md:  1rem;
+$space-lg:  2rem;
+$space-xl:  4rem;
+$space-2xl: 8rem;
+
+// * Layout
+$max-width:       1200px;
+$max-width-prose: 720px;
+$navbar-height:   70px;
+
+// * Animation
+$transition-fast:   0.15s ease;
+$transition-normal: 0.25s ease;
+$transition-slow:   0.4s ease;
+
+// * Z-index scale
+$z-navbar:  100;
+$z-overlay: 200;
+$z-modal:   300;

@@ -50,32 +50,49 @@ export default function BossDetail({ boss }) {
           </button>
         )}
       </div>
-      {boss.image && (
-        <div className={styles.imageWrapper}>
-          <Image
-            src={boss.image}
-            alt={`${boss.name} boss image`}
-            width={800}
-            height={450}
-            className={styles.image}
-            priority
-          />
+
+      <div className={styles.layout}>
+        {/* Left — image */}
+        {boss.image && (
+          <div className={styles.imageWrapper}>
+            <Image
+              src={boss.image}
+              alt={`${boss.name}`}
+              width={800}
+              height={500}
+              className={styles.image}
+              priority
+            />
+          </div>
+        )}
+
+        {/* Right — content */}
+        <div className={styles.content}>
+          <span className={styles.eyebrow}>Boss</span>
+          <h1>{boss.name}</h1>
+
+          <div className={styles.meta}>
+            <div className={styles.metaRow}>
+              <strong>Location</strong>
+              <span>{boss.location}</span>
+            </div>
+            <div className={styles.metaRow}>
+              <strong>Difficulty</strong>
+              <span
+                className={styles.difficulty}
+                data-difficulty={boss.difficulty}
+              >
+                {boss.difficulty}
+              </span>
+            </div>
+            <div className={styles.metaRow}>
+              <strong>Drops</strong>
+              <span>{boss.drops}</span>
+            </div>
+          </div>
+
+          <p className={styles.description}>{boss.description}</p>
         </div>
-      )}
-      <div className={styles.content}>
-        <h1>{boss.name}</h1>
-        <div className={styles.meta}>
-          <span>
-            <strong>Location:</strong> {boss.location}
-          </span>
-          <span>
-            <strong>Difficulty:</strong> {boss.difficulty}
-          </span>
-          <span>
-            <strong>Drops:</strong> {boss.drops}
-          </span>
-        </div>
-        <p>{boss.description}</p>
       </div>
     </div>
   );

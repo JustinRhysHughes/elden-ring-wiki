@@ -1,5 +1,7 @@
-@use "variables" as *;
-@use "mixins" as *;
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// * Global reset and base styles
 
 *,
 *::before,
@@ -11,23 +13,30 @@
 
 html {
   font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background-color: #0a0a0a;
-  color: #c19d53;
-  font-family: "Georgia", serif;
-  line-height: 1.6;
+  background-color: $color-bg;
+  color: $color-text;
+  font-family: $font-body;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  min-height: 100vh;
+
+  // ~ Subtle diagonal gradient for depth
+  background-image:
+    linear-gradient(
+      160deg,
+      rgba(193, 157, 83, 0.015) 0%,
+      transparent 50%,
+      rgba(139, 26, 26, 0.015) 100%
+    );
 }
 
-a {
-  color: #c19d53;
-  text-decoration: none;
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
+// * Layout wrapper — sticky footer
 .layout {
   display: flex;
   flex-direction: column;
@@ -36,4 +45,81 @@ a {
 
 .main {
   flex: 1;
+}
+
+// * Typography scale
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-display;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  color: $color-text;
+}
+
+h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); }
+h2 { font-size: clamp(1.8rem, 3vw, 2.8rem); }
+h3 { font-size: clamp(1.3rem, 2vw, 1.8rem); }
+h4 { font-size: 1.2rem; }
+
+p {
+  font-family: $font-body;
+  line-height: 1.8;
+  color: $color-text;
+}
+
+a {
+  color: $color-gold;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-gold-light;
+  }
+}
+
+// * Selection colour
+::selection {
+  background-color: rgba(193, 157, 83, 0.3);
+  color: $color-text;
+}
+
+// * Scrollbar styling
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: $color-bg;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $color-border;
+  border-radius: 3px;
+
+  &:hover {
+    background: $color-gold-dim;
+  }
+}
+
+// * Utility classes
+
+.gold-text {
+  @include gold-gradient-text;
+}
+
+.divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, $color-gold, transparent);
+  margin: $space-md 0;
+}
+
+.section-label {
+  font-family: $font-display;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $color-gold;
+  opacity: 0.7;
 }
