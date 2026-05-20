@@ -1,5 +1,5 @@
-@use 'variables' as *;
-@use 'mixins' as *;
+@use "variables" as *;
+@use "mixins" as *;
 
 .container {
   @include container;
@@ -39,7 +39,7 @@
   text-transform: uppercase;
   background: transparent;
   border: 1px solid rgba(139, 26, 26, 0.4);
-  color: #E53935;
+  color: #e53935;
   padding: 0.4rem 1rem;
   cursor: pointer;
   transition: all $transition-fast;
@@ -103,7 +103,7 @@
   opacity: 0.7;
 }
 
-h1 {
+.title {
   font-family: $font-display;
   font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 700;
@@ -152,10 +152,22 @@ h1 {
   text-transform: uppercase;
   padding: 0.2rem 0.6rem;
 
-  &[data-difficulty="Easy"] { color: #4CAF50; border: 1px solid rgba(76,175,80,0.3); }
-  &[data-difficulty="Medium"] { color: $color-gold; border: 1px solid $color-border-gold; }
-  &[data-difficulty="Hard"] { color: #FF6B35; border: 1px solid rgba(255,107,53,0.3); }
-  &[data-difficulty="Very Hard"] { color: #E53935; border: 1px solid rgba(229,57,53,0.3); }
+  &[data-difficulty="Easy"] {
+    color: #4caf50;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+  }
+  &[data-difficulty="Medium"] {
+    color: $color-gold;
+    border: 1px solid $color-border-gold;
+  }
+  &[data-difficulty="Hard"] {
+    color: #ff6b35;
+    border: 1px solid rgba(255, 107, 53, 0.3);
+  }
+  &[data-difficulty="Very Hard"] {
+    color: #e53935;
+    border: 1px solid rgba(229, 57, 53, 0.3);
+  }
 }
 
 // * Description text

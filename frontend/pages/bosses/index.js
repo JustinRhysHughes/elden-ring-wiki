@@ -18,7 +18,7 @@ export default function Bosses({ bosses }) {
       <div className={styles.header}>
         <div className={styles.headerLeft}>
           <span className={styles.sectionLabel}>Field Guide</span>
-          <h1>Bosses</h1>
+          <h1 className={styles.title}>Bosses</h1>{" "}
           <p className={styles.subtitle}>
             The most fearsome enemies of the Lands Between
           </p>

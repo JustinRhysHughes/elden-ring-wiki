@@ -69,8 +69,7 @@ export default function BossDetail({ boss }) {
         {/* Right — content */}
         <div className={styles.content}>
           <span className={styles.eyebrow}>Boss</span>
-          <h1>{boss.name}</h1>
-
+          <h1 className={styles.title}>{boss.name}</h1>
           <div className={styles.meta}>
             <div className={styles.metaRow}>
               <strong>Location</strong>

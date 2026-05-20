@@ -1,5 +1,5 @@
-@use 'variables' as *;
-@use 'mixins' as *;
+@use "variables" as *;
+@use "mixins" as *;
 
 .container {
   @include container;
@@ -19,7 +19,7 @@
 
   // ~ Gold accent line
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -1px;
     left: 0;
@@ -36,7 +36,12 @@
 }
 
 .sectionLabel {
-  @extend .section-label;
+  font-family: $font-display;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $color-gold;
+  opacity: 0.7;
 }
 
 h1 {
@@ -67,7 +72,14 @@ h1 {
   transition: all $transition-normal;
   white-space: nowrap;
   align-self: flex-end;
-  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+  clip-path: polygon(
+    0 0,
+    calc(100% - 6px) 0,
+    100% 6px,
+    100% 100%,
+    6px 100%,
+    0 calc(100% - 6px)
+  );
 
   &:hover {
     background: $color-gold-dim;
@@ -113,7 +125,7 @@ h1 {
 
   // ~ Gold hover line
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -129,38 +141,63 @@ h1 {
     transform: translateY(-2px);
     text-decoration: none;
 
-    &::before { width: 100%; }
+    &::before {
+      width: 100%;
+    }
 
-    .cardName { color: $color-gold-light; }
-    .arrow { opacity: 1; transform: translateX(0); }
+    .cardName {
+      color: $color-gold-light;
+    }
+    .arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 }
 
 // ~ Large cards — span 5 columns
-.card:nth-child(3n+1) {
+.card:nth-child(3n + 1) {
   grid-column: span 5;
 
-  @include tablet { grid-column: span 3; }
-  @include mobile { grid-column: span 2; }
-  @include small-mobile { grid-column: span 1; }
+  @include tablet {
+    grid-column: span 3;
+  }
+  @include mobile {
+    grid-column: span 2;
+  }
+  @include small-mobile {
+    grid-column: span 1;
+  }
 }
 
 // ~ Medium cards — span 4 columns
-.card:nth-child(3n+2) {
+.card:nth-child(3n + 2) {
   grid-column: span 4;
 
-  @include tablet { grid-column: span 3; }
-  @include mobile { grid-column: span 1; }
-  @include small-mobile { grid-column: span 1; }
+  @include tablet {
+    grid-column: span 3;
+  }
+  @include mobile {
+    grid-column: span 1;
+  }
+  @include small-mobile {
+    grid-column: span 1;
+  }
 }
 
 // ~ Small cards — span 3 columns
-.card:nth-child(3n+3) {
+.card:nth-child(3n + 3) {
   grid-column: span 3;
 
-  @include tablet { grid-column: span 2; }
-  @include mobile { grid-column: span 1; }
-  @include small-mobile { grid-column: span 1; }
+  @include tablet {
+    grid-column: span 2;
+  }
+  @include mobile {
+    grid-column: span 1;
+  }
+  @include small-mobile {
+    grid-column: span 1;
+  }
 }
 
 .cardInner {
@@ -186,7 +223,7 @@ h1 {
   border-radius: 1px;
 
   &[data-difficulty="Easy"] {
-    color: #4CAF50;
+    color: #4caf50;
     border: 1px solid rgba(76, 175, 80, 0.3);
   }
   &[data-difficulty="Medium"] {
@@ -194,11 +231,11 @@ h1 {
     border: 1px solid $color-border-gold;
   }
   &[data-difficulty="Hard"] {
-    color: #FF6B35;
+    color: #ff6b35;
     border: 1px solid rgba(255, 107, 53, 0.3);
   }
   &[data-difficulty="Very Hard"] {
-    color: #E53935;
+    color: #e53935;
     border: 1px solid rgba(229, 57, 53, 0.3);
   }
 }

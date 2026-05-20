@@ -18,7 +18,7 @@ export default function Lore({ lore }) {
       <div className={styles.header}>
         <div className={styles.headerLeft}>
           <span className={styles.sectionLabel}>Chronicles</span>
-          <h1>Lore</h1>
+          <h1 className={styles.title}>Lore</h1>{" "}
           <p className={styles.subtitle}>
             Uncover the shattered history of the Lands Between
           </p>
