@@ -77,8 +77,11 @@ export default function Register() {
       </Head>
       <div className={styles.container}>
         <div className={styles.card}>
-          <h1>Register</h1>
-          <p>Join the Tarnished.</p>
+          <span className={styles.eyebrow}>Join the Wiki</span>
+          <h1 className={styles.title}>Register</h1>
+          <p className={styles.subtitle}>
+            Create your account and join the Tarnished.
+          </p>
 
           {error && <div className={styles.error}>{error}</div>}
           {success && <div className={styles.success}>{success}</div>}

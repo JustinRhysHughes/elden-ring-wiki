@@ -1,72 +1,173 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
 .container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 2rem;
+  @include container;
+  padding-top: $space-xl;
+  padding-bottom: $space-xl;
+}
 
-  h1 {
-    font-size: 2.5rem;
-    color: #c19d53;
-    margin-bottom: 0.5rem;
-  }
+.header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: $space-xl;
+  padding-bottom: $space-lg;
+  border-bottom: 1px solid $color-border;
+  position: relative;
 
-  > p {
-    color: #c8b89a;
-    margin-bottom: 2rem;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 80px;
+    height: 1px;
+    background: $color-gold;
   }
+}
+
+.headerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+}
+
+.sectionLabel {
+  font-family: $font-display;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $color-gold;
+  opacity: 0.7;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  @include gold-gradient-text;
+}
+
+.subtitle {
+  font-family: $font-body;
+  color: $color-text-muted;
+  font-size: 1rem;
+  font-style: italic;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(12, 1fr);
+  gap: $space-md;
+
+  @include tablet {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include small-mobile {
+    grid-template-columns: 1fr;
+  }
 }
 
 .card {
-  background-color: #1a1a1a;
-  border: 1px solid #2e2e2e;
-  border-radius: 8px;
-  padding: 1.5rem;
-  transition: border-color 0.2s ease;
-  display: flex;
-  flex-direction: column;
-  height: 200px;
+  position: relative;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  padding: $space-lg;
+  transition: all $transition-normal;
+  overflow: hidden;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: $color-gold;
+    transition: width $transition-normal;
+  }
 
   &:hover {
-    border-color: #c19d53;
-  }
+    border-color: $color-border-gold;
+    background: $color-surface-2;
+    transform: translateY(-2px);
 
-  p {
-    color: #c8b89a;
-    font-size: 0.95rem;
-    line-height: 1.7;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    margin-top: 0.5rem;
+    &::before { width: 100%; }
+    .cardName { color: $color-gold-light; }
   }
 }
 
-.cardHeader {
+.card:nth-child(4n+1) {
+  grid-column: span 4;
+  @include tablet { grid-column: span 3; }
+  @include mobile { grid-column: span 2; }
+  @include small-mobile { grid-column: span 1; }
+}
+
+.card:nth-child(4n+2) {
+  grid-column: span 5;
+  @include tablet { grid-column: span 3; }
+  @include mobile { grid-column: span 1; }
+  @include small-mobile { grid-column: span 1; }
+}
+
+.card:nth-child(4n+3) {
+  grid-column: span 3;
+  @include tablet { grid-column: span 2; }
+  @include mobile { grid-column: span 1; }
+  @include small-mobile { grid-column: span 1; }
+}
+
+.card:nth-child(4n+4) {
+  grid-column: span 5;
+  @include tablet { grid-column: span 3; }
+  @include mobile { grid-column: span 2; }
+  @include small-mobile { grid-column: span 1; }
+}
+
+.cardInner {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 0.4rem;
-  margin-bottom: 0.75rem;
-
-  h2 {
-    color: #c19d53;
-    font-size: 1.1rem;
-  }
+  gap: $space-sm;
 }
 
-.role,
+.cardMeta {
+  margin-bottom: $space-xs;
+}
+
 .type {
-  font-size: 0.75rem;
-  color: #6b6b6b;
-  background-color: #2e2e2e;
-  padding: 0.2rem 0.6rem;
-  border-radius: 4px;
-  align-self: flex-start;
-  white-space: nowrap;
+  font-family: $font-display;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $color-gold;
+  opacity: 0.7;
+  border: 1px solid $color-border-gold;
+  padding: 0.15rem 0.5rem;
+}
+
+.cardName {
+  font-family: $font-display;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: $color-text;
+  line-height: 1.3;
+  transition: color $transition-fast;
+}
+
+.cardDescription {
+  font-family: $font-body;
+  font-size: 0.9rem;
+  color: $color-text-muted;
+  line-height: 1.7;
+  font-style: italic;
 }

@@ -63,8 +63,11 @@ export default function Login() {
       </Head>
       <div className={styles.container}>
         <div className={styles.card}>
-          <h1>Login</h1>
-          <p>Welcome back, Tarnished.</p>
+          <span className={styles.eyebrow}>Welcome Back</span>
+          <h1 className={styles.title}>Login</h1>
+          <p className={styles.subtitle}>
+            Return to the Lands Between, Tarnished.
+          </p>
 
           {error && <div className={styles.error}>{error}</div>}
           {success && <div className={styles.success}>{success}</div>}

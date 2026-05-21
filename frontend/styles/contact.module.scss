@@ -1,87 +1,163 @@
+@use "variables" as *;
+@use "mixins" as *;
+
 .container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 3rem 2rem;
+  @include flex-center;
+  min-height: calc(100vh - #{$navbar-height} - 80px);
+  padding: $space-xl $space-lg;
+}
 
-  h1 {
-    font-size: 2.5rem;
-    color: #C19D53;
-    margin-bottom: 0.5rem;
-  }
+.card {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  padding: $space-xl;
+  width: 100%;
+  max-width: 560px;
+  position: relative;
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
 
-  > p {
-    color: #c8b89a;
-    margin-bottom: 2rem;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: $color-gold;
   }
+}
+
+.eyebrow {
+  font-family: $font-display;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: $color-gold;
+  opacity: 0.7;
+  display: block;
+  margin-bottom: $space-sm;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: $space-sm;
+  @include gold-gradient-text;
+}
+
+.subtitle {
+  font-family: $font-body;
+  color: $color-text-muted;
+  font-size: 0.95rem;
+  font-style: italic;
+  margin-bottom: $space-xl;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: $space-lg;
 }
 
 .field {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: $space-xs;
 
   label {
-    color: #C19D53;
-    font-size: 0.9rem;
+    font-family: $font-display;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: $color-gold;
+    opacity: 0.8;
   }
 
-  input, textarea {
-    background-color: #1a1a1a;
-    border: 1px solid #2e2e2e;
-    border-radius: 6px;
-    color: #c8b89a;
+  input,
+  textarea {
+    background: $color-bg;
+    border: 1px solid $color-border;
+    border-bottom: 1px solid $color-border-gold;
+    color: $color-text;
+    font-family: $font-body;
     font-size: 1rem;
-    padding: 0.75rem 1rem;
-    font-family: inherit;
-    transition: border-color 0.2s ease;
+    padding: $space-sm $space-md;
+    transition: border-color $transition-fast;
+    outline: none;
+    resize: none;
 
     &:focus {
-      outline: none;
-      border-color: #C19D53;
+      border-color: $color-gold;
     }
 
     &::placeholder {
-      color: #6b6b6b;
+      color: $color-text-dim;
     }
   }
 }
 
 .button {
-  background-color: #C19D53;
-  color: #0a0a0a;
+  font-family: $font-display;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: $color-gold;
+  color: $color-bg;
   border: none;
-  border-radius: 6px;
   padding: 0.85rem 2rem;
-  font-size: 1rem;
-  font-weight: bold;
   cursor: pointer;
-  transition: opacity 0.2s ease;
+  transition: all $transition-normal;
   align-self: flex-start;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 8px) 0,
+    100% 8px,
+    100% 100%,
+    8px 100%,
+    0 calc(100% - 8px)
+  );
 
   &:hover {
-    opacity: 0.85;
+    background: $color-gold-light;
   }
 }
 
 .success {
-  background-color: #1a1a1a;
-  border: 1px solid #C19D53;
-  border-radius: 8px;
-  padding: 2rem;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+  padding: $space-lg;
+  border: 1px solid $color-border-gold;
+  background: $color-gold-dim;
 
   h2 {
-    color: #C19D53;
-    margin-bottom: 0.5rem;
+    font-family: $font-display;
+    font-size: 1.3rem;
+    color: $color-gold;
+    letter-spacing: 0.05em;
   }
 
   p {
-    color: #c8b89a;
+    font-family: $font-body;
+    color: $color-text-muted;
+    font-style: italic;
+  }
+}
+
+.backLink {
+  font-family: $font-display;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: $color-gold;
+  text-decoration: none;
+  transition: color $transition-fast;
+  align-self: flex-start;
+
+  &:hover {
+    color: $color-gold-light;
   }
 }

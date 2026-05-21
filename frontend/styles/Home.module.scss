@@ -4,7 +4,8 @@
 // * Hero section — full viewport cinematic entry
 .hero {
   position: relative;
-  height: calc(100vh - 70px);
+  width: 100vw;
+  height: calc(100vh - #{$navbar-height});
   display: flex;
   align-items: flex-end;
   overflow: hidden;
@@ -13,13 +14,16 @@
 // * Background image wrapper
 .backgroundWrapper {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 0;
 }
 
 .backgroundImage {
-  object-fit: cover;
-  object-position: center 30%;
+  object-fit: cover !important;
+  object-position: center center !important;
 }
 
 // * Multi-layer overlay for cinematic depth
@@ -44,11 +48,12 @@
 .content {
   position: relative;
   z-index: 2;
-  padding: $space-2xl $space-xl;
+  padding: $space-lg $space-xl $space-xl;
   max-width: 800px;
+  width: 100%;
 
   @include mobile {
-    padding: $space-xl $space-lg;
+    padding: $space-md $space-lg $space-lg;
   }
 }
 
@@ -66,14 +71,12 @@
 
 .title {
   font-family: $font-display;
-  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-size: clamp(2.5rem, 6vw, 5rem);
   font-weight: 900;
   line-height: 0.95;
   letter-spacing: -0.01em;
   text-transform: uppercase;
   margin-bottom: $space-lg;
-
-  // ~ Gold gradient on title
   @include gold-gradient-text;
 }
 
@@ -151,6 +154,7 @@
   align-items: center;
   gap: $space-sm;
   color: $color-text-muted;
+  pointer-events: none;
 
   @include mobile {
     display: none;

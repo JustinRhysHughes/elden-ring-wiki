@@ -1,54 +1,146 @@
+@use "variables" as *;
+@use "mixins" as *;
+
 .container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem;
+  @include container;
+  padding-top: $space-xl;
+  padding-bottom: $space-2xl;
 }
 
-.hero {
-  text-align: center;
-  padding: 3rem 0 2rem;
-  border-bottom: 1px solid #2e2e2e;
-  margin-bottom: 2rem;
+.header {
+  margin-bottom: $space-xl;
+  padding-bottom: $space-lg;
+  border-bottom: 1px solid $color-border;
+  position: relative;
 
-  h1 {
-    font-size: 2.5rem;
-    color: #c19d53;
-    margin-bottom: 1rem;
-  }
-
-  p {
-    color: #c8b89a;
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin: 0 auto;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 80px;
+    height: 1px;
+    background: $color-gold;
   }
 }
 
+.headerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+}
+
+.sectionLabel {
+  font-family: $font-display;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $color-gold;
+  opacity: 0.7;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  @include gold-gradient-text;
+}
+
+.subtitle {
+  font-family: $font-body;
+  color: $color-text-muted;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+// * Content sections
 .content {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: $space-xl;
+  max-width: $max-width-prose;
 }
 
 .section {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: $space-lg;
+  align-items: start;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sectionNumber {
+  font-family: $font-display;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: $color-gold;
+  opacity: 0.4;
+  padding-top: 6px;
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.sectionBody {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+
   h2 {
-    color: #c19d53;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-family: $font-display;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: $color-text;
+    text-transform: uppercase;
   }
 
   p {
-    color: #c8b89a;
-    line-height: 1.8;
-    margin-bottom: 1rem;
+    font-family: $font-body;
+    font-size: 1.05rem;
+    color: $color-text-muted;
+    line-height: 1.85;
+  }
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, $color-gold-dim, transparent);
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+  margin-top: $space-sm;
+}
+
+.externalLink {
+  font-family: $font-display;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: $color-gold;
+  text-decoration: none;
+  transition: color $transition-fast;
+  display: inline-flex;
+  align-items: center;
+  gap: $space-sm;
+
+  &::after {
+    content: "↗";
+    font-size: 0.8rem;
+    opacity: 0.6;
   }
 
-  a {
-    color: #c19d53;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
+  &:hover {
+    color: $color-gold-light;
   }
 }

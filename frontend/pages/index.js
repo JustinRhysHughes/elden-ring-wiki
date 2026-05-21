@@ -21,6 +21,7 @@ export default function Home() {
             alt="The Lands Between"
             fill
             priority
+            sizes="100vw"
             className={styles.backgroundImage}
           />
           <div className={styles.overlay} />

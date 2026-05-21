@@ -51,19 +51,26 @@ export default function Characters() {
         />
       </Head>
       <div className={styles.container}>
-        <h1>Characters</h1>
-        <p>
-          Notable figures of the Lands Between — allies, enemies and everything
-          in between.
-        </p>
+        <div className={styles.header}>
+          <div className={styles.headerLeft}>
+            <span className={styles.sectionLabel}>Inhabitants</span>
+            <h1 className={styles.title}>Characters</h1>
+            <p className={styles.subtitle}>
+              Notable figures of the Lands Between — allies, enemies and
+              everything in between
+            </p>
+          </div>
+        </div>
         <div className={styles.grid}>
           {characters.map((char) => (
             <div key={char.name} className={styles.card}>
-              <div className={styles.cardHeader}>
-                <h2>{char.name}</h2>
-                <span className={styles.role}>{char.role}</span>
+              <div className={styles.cardInner}>
+                <div className={styles.cardMeta}>
+                  <span className={styles.role}>{char.role}</span>
+                </div>
+                <h2 className={styles.cardName}>{char.name}</h2>
+                <p className={styles.cardDescription}>{char.description}</p>
               </div>
-              <p>{char.description}</p>
             </div>
           ))}
         </div>

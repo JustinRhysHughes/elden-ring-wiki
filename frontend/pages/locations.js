@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Link from "next/link";
 import styles from "../styles/locations.module.scss";
 
 const locations = [
@@ -52,19 +51,26 @@ export default function Locations() {
         />
       </Head>
       <div className={styles.container}>
-        <h1>Locations</h1>
-        <p>
-          Explore the regions, legacy dungeons and points of interest across the
-          Lands Between.
-        </p>
+        <div className={styles.header}>
+          <div className={styles.headerLeft}>
+            <span className={styles.sectionLabel}>Atlas</span>
+            <h1 className={styles.title}>Locations</h1>
+            <p className={styles.subtitle}>
+              Regions, legacy dungeons and points of interest across the Lands
+              Between
+            </p>
+          </div>
+        </div>
         <div className={styles.grid}>
           {locations.map((loc) => (
             <div key={loc.name} className={styles.card}>
-              <div className={styles.cardHeader}>
-                <h2>{loc.name}</h2>
-                <span className={styles.type}>{loc.type}</span>
+              <div className={styles.cardInner}>
+                <div className={styles.cardMeta}>
+                  <span className={styles.type}>{loc.type}</span>
+                </div>
+                <h2 className={styles.cardName}>{loc.name}</h2>
+                <p className={styles.cardDescription}>{loc.description}</p>
               </div>
-              <p>{loc.description}</p>
             </div>
           ))}
         </div>

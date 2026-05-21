@@ -50,6 +50,9 @@
   background-clip: text;
 }
 
+@mixin nav-collapse {
+  @media (max-width: 1280px) { @content; }
+}
 // ~ Cinematic vignette overlay
 @mixin vignette {
   &::after {
