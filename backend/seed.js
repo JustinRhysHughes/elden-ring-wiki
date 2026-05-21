@@ -158,7 +158,7 @@ const lore = [
     category: "Lore",
     description:
       "The Tarnished are warriors who were once blessed by the Erdtree's grace but had it stripped from them and were exiled from the Lands Between. After the Elden Ring was shattered, grace was extended to the Tarnished once more, beckoning them to return and seek the Great Runes. The player character is one such Tarnished.",
-    image: "/images/lore/lands-between.webp",
+    image: "/images/lore/the-tarnished.webp",
   },
   {
     slug: "the-shattering",
@@ -166,7 +166,7 @@ const lore = [
     category: "Event",
     description:
       "The Shattering was a catastrophic war that followed the death of Godwyn the Golden and the breaking of the Elden Ring. Queen Marika shattered the Elden Ring in grief, and its fragments — the Great Runes — were claimed by her demigod children. The demigods then waged war against each other in a devastating conflict that reshaped the Lands Between.",
-    image: "/images/lore/lands-between.webp",
+    image: "/images/lore/the-shattering.webp",
   },
   {
     slug: "grace-and-the-erdtree",
