@@ -1,10 +1,10 @@
-@use 'variables' as *;
-@use 'mixins' as *;
+@use "variables" as *;
+@use "mixins" as *;
 
 // * Hero section — full viewport cinematic entry
 .hero {
   position: relative;
-  min-height: 100vh;
+  height: calc(100vh - 70px);
   display: flex;
   align-items: flex-end;
   overflow: hidden;
@@ -37,11 +37,7 @@
       rgba(8, 8, 8, 0.2) 70%,
       transparent 100%
     ),
-    linear-gradient(
-      to right,
-      rgba(8, 8, 8, 0.5) 0%,
-      transparent 60%
-    );
+    linear-gradient(to right, rgba(8, 8, 8, 0.5) 0%, transparent 60%);
 }
 
 // * Hero content — bottom left cinematic layout
@@ -109,7 +105,14 @@
   cursor: pointer;
   text-decoration: none;
   transition: all $transition-normal;
-  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  clip-path: polygon(
+    0 0,
+    calc(100% - 8px) 0,
+    100% 8px,
+    100% 100%,
+    8px 100%,
+    0 calc(100% - 8px)
+  );
 
   &:hover {
     background: $color-gold-light;
@@ -171,6 +174,13 @@
 }
 
 @keyframes scrollPulse {
-  0%, 100% { opacity: 0.4; transform: scaleY(1); }
-  50% { opacity: 1; transform: scaleY(1.1); }
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1.1);
+  }
 }

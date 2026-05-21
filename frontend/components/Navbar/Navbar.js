@@ -60,14 +60,18 @@ export default function Navbar() {
             </button>
           </>
         ) : (
-          <>
-            <Link href="/login" className={styles.loginBtn}>
+          <div className={styles.mobileAuth}>
+            <Link href="/login" className={styles.loginBtn} onClick={closeMenu}>
               Login
             </Link>
-            <Link href="/register" className={styles.registerBtn}>
+            <Link
+              href="/register"
+              className={styles.registerBtn}
+              onClick={closeMenu}
+            >
               Register
             </Link>
-          </>
+          </div>
         )}
 
         {/* Hamburger button */}

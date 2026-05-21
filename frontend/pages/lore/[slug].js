@@ -50,22 +50,29 @@ export default function LoreDetail({ entry }) {
           </button>
         )}
       </div>
-      {entry.image && (
-        <div className={styles.imageWrapper}>
-          <Image
-            src={entry.image}
-            alt={`${entry.title} lore image`}
-            width={800}
-            height={450}
-            className={styles.image}
-            priority
-          />
+
+      <div className={styles.layout}>
+        {/* Left — image */}
+        {entry.image && (
+          <div className={styles.imageWrapper}>
+            <Image
+              src={entry.image}
+              alt={entry.title}
+              width={800}
+              height={500}
+              className={styles.image}
+              priority
+            />
+          </div>
+        )}
+
+        {/* Right — content */}
+        <div className={styles.content}>
+          <span className={styles.eyebrow}>Lore</span>
+          <h1 className={styles.title}>{entry.title}</h1>
+          <span className={styles.category}>{entry.category}</span>
+          <p className={styles.description}>{entry.description}</p>
         </div>
-      )}
-      <div className={styles.content}>
-        <h1>{entry.title}</h1>
-        <span className={styles.category}>{entry.category}</span>
-        <p>{entry.description}</p>
       </div>
     </div>
   );

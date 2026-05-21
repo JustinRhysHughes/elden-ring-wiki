@@ -1,79 +1,126 @@
+@use "variables" as *;
+@use "mixins" as *;
+
 .container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem;
+  @include container;
+  padding-top: $space-xl;
+  padding-bottom: $space-2xl;
+}
+
+.topBar {
+  @include flex-between;
+  margin-bottom: $space-xl;
+  padding-bottom: $space-md;
+  border-bottom: 1px solid $color-border;
 }
 
 .back {
-  display: inline-block;
-  color: #c19d53;
+  font-family: $font-display;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: $color-text-muted;
   text-decoration: none;
-  margin-bottom: 1.5rem;
-  font-size: 0.9rem;
+  transition: color $transition-fast;
 
   &:hover {
-    text-decoration: underline;
+    color: $color-gold;
+  }
+}
+
+.deleteBtn {
+  font-family: $font-display;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid rgba(139, 26, 26, 0.4);
+  color: #e53935;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: $color-crimson;
+    border-color: $color-crimson;
+    color: $color-text;
+  }
+}
+
+// * Magazine layout — image left, content right
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-xl;
+  align-items: start;
+
+  @include tablet {
+    grid-template-columns: 1fr;
   }
 }
 
 .imageWrapper {
-  width: 100%;
-  border-radius: 8px;
+  position: sticky;
+  top: calc($navbar-height + $space-lg);
+  border: 1px solid $color-border;
   overflow: hidden;
-  margin-bottom: 2rem;
-  border: 1px solid #2e2e2e;
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+
+  @include tablet {
+    position: static;
+  }
 }
 
 .image {
   width: 100%;
   height: auto;
   display: block;
+  transition: transform $transition-slow;
+
+  &:hover {
+    transform: scale(1.02);
+  }
 }
 
 .content {
-  h1 {
-    font-size: 2.5rem;
-    color: #c19d53;
-    margin-bottom: 0.5rem;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+}
 
-  p {
-    color: #c8b89a;
-    line-height: 1.8;
-    font-size: 1.05rem;
-    margin-top: 1rem;
-  }
+.eyebrow {
+  font-family: $font-display;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $color-gold;
+  opacity: 0.7;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  @include gold-gradient-text;
 }
 
 .category {
   display: inline-block;
-  font-size: 0.8rem;
-  color: #6b6b6b;
-  background-color: #2e2e2e;
+  font-family: $font-display;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $color-gold;
+  border: 1px solid $color-border-gold;
   padding: 0.2rem 0.6rem;
-  border-radius: 4px;
-  margin-bottom: 1rem;
 }
 
-.topBar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1.5rem;
-}
-
-.deleteBtn {
-  background-color: transparent;
-  border: 1px solid #8b0000;
-  color: #ff6b6b;
-  padding: 0.5rem 1.2rem;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-
-  &:hover {
-    background-color: #8b0000;
-    color: #fff;
-  }
+.description {
+  font-family: $font-body;
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: $color-text;
+  @include gold-border-left;
 }

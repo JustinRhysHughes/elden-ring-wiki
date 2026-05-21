@@ -1,5 +1,5 @@
-@use '../../styles/variables' as *;
-@use '../../styles/mixins' as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
 // * Main navbar container
 .navbar {
@@ -18,7 +18,7 @@
 
   // ~ Subtle gold line at very bottom
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 0;
@@ -48,7 +48,7 @@
     // ~ Small decorative line under logo
     position: relative;
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: -4px;
       left: 0;
@@ -60,7 +60,9 @@
 
     &:hover {
       color: $color-gold-light;
-      &::after { width: 100%; }
+      &::after {
+        width: 100%;
+      }
     }
   }
 }
@@ -87,7 +89,7 @@
     position: relative;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: -4px;
       left: 0;
@@ -99,7 +101,9 @@
 
     &:hover {
       color: $color-gold;
-      &::after { width: 100%; }
+      &::after {
+        width: 100%;
+      }
     }
   }
 }
@@ -271,4 +275,12 @@
       color: $color-gold;
     }
   }
+}
+
+// * Mobile auth buttons, stacked vertically
+.mobileAuth {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+  align-items: flex-start;
 }
