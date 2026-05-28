@@ -57,7 +57,7 @@ export default function BossDetail({ boss }) {
           <div className={styles.imageWrapper}>
             <Image
               src={boss.image}
-              alt={`${boss.name}`}
+              alt={`${boss.name} boss from Elden Ring`}
               width={800}
               height={500}
               className={styles.image}

@@ -37,14 +37,6 @@ export default function Bosses({ bosses }) {
             className={styles.card}
           >
             <div className={styles.cardInner}>
-              <Image
-                src={`/images/bosses/${boss.slug}.webp`}
-                alt={`${boss.name} boss from Elden Ring`}
-                width={300}
-                height={200}
-                className={styles.image}
-              />
-
               <div className={styles.cardMeta}>
                 <span
                   className={styles.difficulty}
@@ -53,7 +45,6 @@ export default function Bosses({ bosses }) {
                   {boss.difficulty}
                 </span>
               </div>
-
               <span className={styles.cardName}>{boss.name}</span>
               <span className={styles.cardLocation}>{boss.location}</span>
               <span className={styles.arrow}>→</span>
