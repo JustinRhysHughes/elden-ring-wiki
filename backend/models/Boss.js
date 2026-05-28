@@ -1,19 +1,19 @@
-// Boss Model
-// Represents a boss enemy in the Lands Between
-// A Boss belongs to a Location
+//* Boss Model
+//* Represents a boss enemy in the Lands Between
+//* A Boss belongs to a Location
 
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
 const Boss = sequelize.define("Boss", {
-  // Primary key
+  //* Primary key
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
     allowNull: false,
   },
-  // URL-friendly slug for routing
+  //* URL-friendly slug for routing
   slug: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -26,7 +26,7 @@ const Boss = sequelize.define("Boss", {
       },
     },
   },
-  // Name of the boss
+  //* Name of the boss
   name: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -40,7 +40,7 @@ const Boss = sequelize.define("Boss", {
       },
     },
   },
-  // Difficulty rating
+  //* Difficulty rating
   difficulty: {
     type: DataTypes.ENUM("Easy", "Medium", "Hard", "Very Hard"),
     allowNull: false,
@@ -51,27 +51,27 @@ const Boss = sequelize.define("Boss", {
       },
     },
   },
-  // Item dropped on defeat
+  //* Item dropped on defeat
   drops: {
     type: DataTypes.STRING,
     allowNull: true,
   },
-  // Description of the boss
+  //* Description of the boss
   description: {
     type: DataTypes.TEXT,
     allowNull: true,
   },
-  // Optional image path
+  //* Optional image path
   image: {
     type: DataTypes.STRING,
     allowNull: true,
   },
-  // Location name for display (separate from the FK relationship)
+  //* Location name for display (separate from the FK relationship)
   location: {
     type: DataTypes.STRING,
     allowNull: true,
   },
-  // Foreign key linking boss to a location
+  //* Foreign key linking boss to a location
   LocationId: {
     type: DataTypes.INTEGER,
     allowNull: false,

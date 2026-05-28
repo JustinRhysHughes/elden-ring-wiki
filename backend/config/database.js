@@ -1,14 +1,14 @@
-// Database configuration file
-// Creates and exports the Sequelize instance connected to Supabase PostgreSQL
-// All sensitive connection details are loaded from environment variables
+//* Database configuration file
+//* Creates and exports the Sequelize instance connected to Supabase PostgreSQL
+//* All sensitive connection details are loaded from environment variables
 
-// Explicitly require pg to ensure Vercel includes it in the serverless bundle
+//* Explicitly require pg to ensure Vercel includes it in the serverless bundle
 const pg = require("pg");
 const { Sequelize } = require("sequelize");
 require("dotenv").config();
 
-// Create Sequelize instance using the DATABASE_URL connection string
-// SSL is required for Supabase connections
+//* Create Sequelize instance using the DATABASE_URL connection string
+//* SSL is required for Supabase connections
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: "postgres",
   dialectModule: pg,
@@ -21,7 +21,7 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
   logging: false,
 });
 
-// Test the database connection
+//* Test the database connection
 const testConnection = async () => {
   try {
     await sequelize.authenticate();

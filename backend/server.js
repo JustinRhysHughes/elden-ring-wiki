@@ -24,11 +24,11 @@ const allowedOrigins = [
   "https://elden-ring-wiki-git-main-justin-hughes-projects-3b7faa1f.vercel.app",
 ];
 
-// CORS configuration
+//* CORS configuration
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (Postman, mobile apps)
+      //* Allow requests with no origin (Postman, mobile apps)
       if (!origin) return callback(null, true);
       if (allowedOrigins.includes(origin)) {
         return callback(null, true);
