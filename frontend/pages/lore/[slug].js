@@ -10,15 +10,13 @@ export async function getServerSideProps({ params }) {
 
   const res = await fetch(`${apiUrl}/api/lore/${params.slug}`);
 
-  // If API returns 404
-  if (res.status === 404) {
+  if (!res.ok) {
     return { notFound: true };
   }
 
   const entry = await res.json();
 
-  // If API returns empty or invalid data
-  if (!entry || entry.error) {
+  if (!entry || !entry.id) {
     return { notFound: true };
   }
 

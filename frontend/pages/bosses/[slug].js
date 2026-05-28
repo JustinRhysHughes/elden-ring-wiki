@@ -8,20 +8,19 @@ export async function getServerSideProps({ params }) {
   const apiUrl =
     process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
 
-  const res = await fetch(`${apiUrl}/api/bosses/slug/${params.slug}`);
+  const res = await fetch(`${apiUrl}/api/bosses/${params.slug}`);
 
-  if (res.status === 404) {
+  if (!res.ok) {
     return { notFound: true };
   }
 
-  const boss = await res.json();
+  const entry = await res.json();
 
-  //* extra safety if API returns empty instead of 404
-  if (!boss || boss.error) {
+  if (!entry || !entry.id) {
     return { notFound: true };
   }
 
-  return { props: { boss } };
+  return { props: { entry } };
 }
 
 export default function BossDetail({ boss }) {
