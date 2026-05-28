@@ -8,19 +8,23 @@ export async function getServerSideProps({ params }) {
   const apiUrl =
     process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
 
-  const res = await fetch(`${apiUrl}/api/lore/${params.slug}`);
+  try {
+    const res = await fetch(`${apiUrl}/api/lore/${params.slug}`);
 
-  if (!res.ok) {
+    if (!res.ok) {
+      return { notFound: true };
+    }
+
+    const entry = await res.json();
+
+    if (!entry || !entry.id) {
+      return { notFound: true };
+    }
+
+    return { props: { entry } };
+  } catch (err) {
     return { notFound: true };
   }
-
-  const entry = await res.json();
-
-  if (!entry || !entry.id) {
-    return { notFound: true };
-  }
-
-  return { props: { entry } };
 }
 
 export default function LoreDetail({ entry }) {
