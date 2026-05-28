@@ -7,8 +7,20 @@ import styles from "../../styles/bossDetail.module.scss";
 export async function getServerSideProps({ params }) {
   const apiUrl =
     process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
+
   const res = await fetch(`${apiUrl}/api/bosses/slug/${params.slug}`);
+
+  if (res.status === 404) {
+    return { notFound: true };
+  }
+
   const boss = await res.json();
+
+  //* extra safety if API returns empty instead of 404
+  if (!boss || boss.error) {
+    return { notFound: true };
+  }
+
   return { props: { boss } };
 }
 
