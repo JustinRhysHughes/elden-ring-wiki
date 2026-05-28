@@ -1,6 +1,15 @@
 import Link from "next/link";
+import Head from "next/head";
 import { useAuth } from "../../context/AuthContext";
 import styles from "../../styles/bosses.module.scss";
+
+<Head>
+  <title>Bosses | Elden Ring Wiki</title>
+  <meta
+    name="description"
+    content="Browse all bosses in Elden Ring, including locations, difficulty and rewards."
+  />
+</Head>;
 
 export async function getServerSideProps() {
   const apiUrl =
