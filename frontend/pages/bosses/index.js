@@ -6,8 +6,10 @@ import styles from "../../styles/bosses.module.scss";
 export async function getServerSideProps() {
   const apiUrl =
     process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
+
   const res = await fetch(`${apiUrl}/api/bosses`);
   const bosses = await res.json();
+
   return { props: { bosses } };
 }
 
@@ -28,17 +30,19 @@ export default function Bosses({ bosses }) {
         <div className={styles.header}>
           <div className={styles.headerLeft}>
             <span className={styles.sectionLabel}>Field Guide</span>
-            <h1 className={styles.title}>Bosses</h1>{" "}
+            <h1 className={styles.title}>Bosses</h1>
             <p className={styles.subtitle}>
               The most fearsome enemies of the Lands Between
             </p>
           </div>
+
           {user?.isAdmin && (
             <Link href="/bosses/add" className={styles.addBtn}>
               + Add Boss
             </Link>
           )}
         </div>
+
         <div className={styles.grid}>
           {bosses.map((boss) => (
             <Link
@@ -55,6 +59,7 @@ export default function Bosses({ bosses }) {
                     {boss.difficulty}
                   </span>
                 </div>
+
                 <span className={styles.cardName}>{boss.name}</span>
                 <span className={styles.cardLocation}>{boss.location}</span>
                 <span className={styles.arrow}>→</span>

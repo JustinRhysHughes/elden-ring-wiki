@@ -11,15 +11,11 @@ export async function getServerSideProps({ params }) {
   try {
     const res = await fetch(`${apiUrl}/api/bosses/${params.slug}`);
 
-    if (!res.ok) {
-      return { notFound: true };
-    }
+    if (!res.ok) return { notFound: true };
 
     const entry = await res.json();
 
-    if (!entry || !entry.id) {
-      return { notFound: true };
-    }
+    if (!entry || !entry.id) return { notFound: true };
 
     return { props: { entry } };
   } catch (err) {
@@ -59,6 +55,7 @@ export default function BossDetail({ entry }) {
         <Link href="/bosses" className={styles.back}>
           ← Back to Bosses
         </Link>
+
         {user?.isAdmin && (
           <button onClick={handleDelete} className={styles.deleteBtn}>
             Delete Boss
