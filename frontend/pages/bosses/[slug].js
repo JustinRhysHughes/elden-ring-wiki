@@ -27,21 +27,21 @@ export async function getServerSideProps({ params }) {
   }
 }
 
-export default function BossDetail({ boss }) {
+export default function BossDetail({ entry }) {
   const { user, token } = useAuth();
   const router = useRouter();
 
   const handleDelete = async () => {
-    if (!confirm(`Are you sure you want to delete ${boss.name}?`)) return;
+    if (!confirm(`Are you sure you want to delete ${entry.name}?`)) return;
 
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/bosses/${boss.id}`,
-        {
-          method: "DELETE",
-          headers: { Authorization: `Bearer ${token}` },
-        },
-      );
+      const apiUrl =
+        process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
+
+      const res = await fetch(`${apiUrl}/api/bosses/${entry.id}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
       if (res.ok) {
         router.push("/bosses");
@@ -67,12 +67,11 @@ export default function BossDetail({ boss }) {
       </div>
 
       <div className={styles.layout}>
-        {/* Left — image */}
-        {boss.image && (
+        {entry.image && (
           <div className={styles.imageWrapper}>
             <Image
-              src={boss.image}
-              alt={`${boss.name} boss from Elden Ring`}
+              src={entry.image}
+              alt={`${entry.name} boss from Elden Ring`}
               width={800}
               height={500}
               className={styles.image}
@@ -81,31 +80,33 @@ export default function BossDetail({ boss }) {
           </div>
         )}
 
-        {/* Right — content */}
         <div className={styles.content}>
           <span className={styles.eyebrow}>Boss</span>
-          <h1 className={styles.title}>{boss.name}</h1>
+          <h1 className={styles.title}>{entry.name}</h1>
+
           <div className={styles.meta}>
             <div className={styles.metaRow}>
               <strong>Location</strong>
-              <span>{boss.location}</span>
+              <span>{entry.location}</span>
             </div>
+
             <div className={styles.metaRow}>
               <strong>Difficulty</strong>
               <span
                 className={styles.difficulty}
-                data-difficulty={boss.difficulty}
+                data-difficulty={entry.difficulty}
               >
-                {boss.difficulty}
+                {entry.difficulty}
               </span>
             </div>
+
             <div className={styles.metaRow}>
               <strong>Drops</strong>
-              <span>{boss.drops}</span>
+              <span>{entry.drops}</span>
             </div>
           </div>
 
-          <p className={styles.description}>{boss.description}</p>
+          <p className={styles.description}>{entry.description}</p>
         </div>
       </div>
     </div>
