@@ -18,7 +18,7 @@ const {
 
 // Public routes
 router.get("/", getAllBosses);
-router.get("/slug/:slug", getBossBySlug);
+router.get("/:slug", getBossBySlug);
 router.get("/:id", getBossById);
 
 // Admin only routes
