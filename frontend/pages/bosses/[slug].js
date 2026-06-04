@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const apiUrl =
-    process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
+    process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki-api.vercel.app";
 
   try {
     const res = await fetch(`${apiUrl}/api/bosses/${params.slug}`);
@@ -42,7 +42,8 @@ export default function BossDetail({ entry }) {
 
     try {
       const apiUrl =
-        process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
+        process.env.NEXT_PUBLIC_API_URL ||
+        "https://elden-ring-wiki-api.vercel.app";
 
       const res = await fetch(`${apiUrl}/api/bosses/${entry.id}`, {
         method: "DELETE",

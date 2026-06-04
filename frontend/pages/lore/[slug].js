@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const apiUrl =
-    process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
+    process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki-api.vercel.app";
 
   try {
     const res = await fetch(`${apiUrl}/api/lores/${params.slug}`);
@@ -45,13 +45,14 @@ export default function LoreDetail({ entry }) {
     if (!confirm(`Are you sure you want to delete ${entry.title}?`)) return;
 
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/lores/${entry.id}`,
-        {
-          method: "DELETE",
-          headers: { Authorization: `Bearer ${token}` },
-        },
-      );
+      const apiUrl =
+        process.env.NEXT_PUBLIC_API_URL ||
+        "https://elden-ring-wiki-api.vercel.app";
+
+      const res = await fetch(`${apiUrl}/api/lores/${entry.id}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
       if (res.ok) {
         router.push("/lore");
