@@ -6,17 +6,8 @@ import styles from "../../styles/loreDetail.module.scss";
 
 //* Tell Next.js which lore slugs exist
 export async function getStaticPaths() {
-  const apiUrl =
-    process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
-  const res = await fetch(`${apiUrl}/lores`);
-  const lores = await res.json();
-
-  const paths = lores.map((lore) => ({
-    params: { slug: lore.slug },
-  }));
-
   return {
-    paths,
+    paths: [],
     fallback: "blocking",
   };
 }

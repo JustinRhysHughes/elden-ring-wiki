@@ -6,18 +6,9 @@ import styles from "../../styles/bossDetail.module.scss";
 
 //* Tell Next.js which slugs exist
 export async function getStaticPaths() {
-  const apiUrl =
-    process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
-  const res = await fetch(`${apiUrl}/bosses`);
-  const bosses = await res.json();
-
-  const paths = bosses.map((boss) => ({
-    params: { slug: boss.slug },
-  }));
-
   return {
-    paths,
-    fallback: "blocking", //* Generate pages on demand if new bosses added
+    paths: [],
+    fallback: 'blocking'
   };
 }
 
