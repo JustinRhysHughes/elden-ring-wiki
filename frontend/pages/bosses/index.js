@@ -5,23 +5,15 @@ import styles from "../../styles/bosses.module.scss";
 
 export async function getStaticProps() {
   const apiUrl =
-    process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki-api.vercel.app";
+    process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
 
-  try {
-    const res = await fetch(`${apiUrl}/api/bosses`);
-    const bosses = await res.json();
+  const res = await fetch(`${apiUrl}/api/bosses`);
+  const bosses = await res.json();
 
-    return {
-      props: { bosses },
-      revalidate: 3600,
-    };
-  } catch (error) {
-    console.error("Failed to fetch bosses:", error);
-    return {
-      props: { bosses: [] },
-      revalidate: 60,
-    };
-  }
+  return {
+    props: { bosses },
+    revalidate: 3600,
+  };
 }
 
 export default function Bosses({ bosses }) {

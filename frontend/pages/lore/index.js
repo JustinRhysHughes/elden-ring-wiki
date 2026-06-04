@@ -4,23 +4,13 @@ import styles from "../../styles/lore.module.scss";
 
 export async function getStaticProps() {
   const apiUrl =
-    process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki-api.vercel.app";
-
-  try {
-    const res = await fetch(`${apiUrl}/api/lores`);
-    const lore = await res.json();
-
-    return {
-      props: { lore },
-      revalidate: 3600,
-    };
-  } catch (error) {
-    console.error("Failed to fetch lore:", error);
-    return {
-      props: { lore: [] },
-      revalidate: 60,
-    };
-  }
+    process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
+  const res = await fetch(`${apiUrl}/api/lores`);
+  const lore = await res.json();
+  return {
+    props: { lore },
+    revalidate: 3600,
+  };
 }
 
 export default function Lore({ lore }) {
