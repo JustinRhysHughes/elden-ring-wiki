@@ -78,7 +78,7 @@ app.use((req, res, next) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/bosses", bossRoutes);
 app.use("/api/locations", locationRoutes);
-app.use("/api/lore", loreRoutes);
+app.use("/api/lores", loreRoutes);
 app.use("/api/users", userRoutes);
 
 //* Health check
