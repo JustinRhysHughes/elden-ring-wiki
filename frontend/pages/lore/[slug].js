@@ -4,12 +4,28 @@ import { useRouter } from "next/router";
 import { useAuth } from "../../context/AuthContext";
 import styles from "../../styles/loreDetail.module.scss";
 
-export async function getServerSideProps({ params }) {
-  const apiUrl =
-    process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
+//* Tell Next.js which lore slugs exist
+export async function getStaticPaths() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
+  const res = await fetch(`${apiUrl}/api/lores`);
+  const lores = await res.json();
+
+  const paths = lores.map(lore => ({
+    params: { slug: lore.slug }
+  }));
+
+  return {
+    paths,
+    fallback: 'blocking'
+  };
+}
+
+//* Generate the static page for each slug
+export async function getStaticProps({ params }) {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
 
   try {
-    const res = await fetch(`${apiUrl}/api/lore/${params.slug}`);
+    const res = await fetch(`${apiUrl}/api/lores/${params.slug}`);
 
     if (!res.ok) {
       return { notFound: true };
@@ -21,7 +37,10 @@ export async function getServerSideProps({ params }) {
       return { notFound: true };
     }
 
-    return { props: { entry } };
+    return { 
+      props: { entry },
+      revalidate: 3600  //* Re-generate every 1 hour
+    };
   } catch (err) {
     return { notFound: true };
   }

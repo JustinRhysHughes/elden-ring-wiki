@@ -2,12 +2,15 @@ import Link from "next/link";
 import { useAuth } from "../../context/AuthContext";
 import styles from "../../styles/lore.module.scss";
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const apiUrl =
     process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
   const res = await fetch(`${apiUrl}/api/lore`);
   const lore = await res.json();
-  return { props: { lore } };
+  return {
+    props: { lore },
+    revalidate: 3600, //* Re-generate every 1 hour
+  };
 }
 
 export default function Lore({ lore }) {

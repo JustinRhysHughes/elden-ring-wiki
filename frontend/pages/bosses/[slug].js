@@ -4,7 +4,25 @@ import { useRouter } from "next/router";
 import { useAuth } from "../../context/AuthContext";
 import styles from "../../styles/bossDetail.module.scss";
 
-export async function getServerSideProps({ params }) {
+//* Tell Next.js which slugs exist
+export async function getStaticPaths() {
+  const apiUrl =
+    process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
+  const res = await fetch(`${apiUrl}/api/bosses`);
+  const bosses = await res.json();
+
+  const paths = bosses.map((boss) => ({
+    params: { slug: boss.slug },
+  }));
+
+  return {
+    paths,
+    fallback: "blocking", //* Generate pages on demand if new bosses added
+  };
+}
+
+//* Generate the static page for each slug
+export async function getStaticProps({ params }) {
   const apiUrl =
     process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
 
@@ -17,7 +35,10 @@ export async function getServerSideProps({ params }) {
 
     if (!entry || !entry.id) return { notFound: true };
 
-    return { props: { entry } };
+    return {
+      props: { entry },
+      revalidate: 3600, //* Re-generate every 1 hour
+    };
   } catch (err) {
     return { notFound: true };
   }
