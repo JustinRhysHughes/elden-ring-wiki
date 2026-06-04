@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
   reactStrictMode: true,
+
+  images: {
+    domains: ["elden-ring-wiki-6tbe.vercel.app"], // Add your backend domain
+  },
 };
 
 export default nextConfig;
