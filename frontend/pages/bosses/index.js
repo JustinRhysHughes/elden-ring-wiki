@@ -7,7 +7,7 @@ export async function getStaticProps() {
   const apiUrl =
     process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
 
-  const res = await fetch(`${apiUrl}/api/bosses`);
+  const res = await fetch(`${apiUrl}/bosses`);
   const bosses = await res.json();
   return {
     props: { bosses },

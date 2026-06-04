@@ -8,7 +8,7 @@ import styles from "../../styles/bossDetail.module.scss";
 export async function getStaticPaths() {
   const apiUrl =
     process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
-  const res = await fetch(`${apiUrl}/api/bosses`);
+  const res = await fetch(`${apiUrl}/bosses`);
   const bosses = await res.json();
 
   const paths = bosses.map((boss) => ({
@@ -27,7 +27,7 @@ export async function getStaticProps({ params }) {
     process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
 
   try {
-    const res = await fetch(`${apiUrl}/api/bosses/${params.slug}`);
+    const res = await fetch(`${apiUrl}/bosses/${params.slug}`);
 
     if (!res.ok) return { notFound: true };
 

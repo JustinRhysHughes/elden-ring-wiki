@@ -5,7 +5,7 @@ import styles from "../../styles/lore.module.scss";
 export async function getStaticProps() {
   const apiUrl =
     process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
-  const res = await fetch(`${apiUrl}/api/lore`);
+  const res = await fetch(`${apiUrl}/lore`);
   const lore = await res.json();
   return {
     props: { lore },
