@@ -9,9 +9,6 @@ export async function getStaticProps() {
 
   try {
     const res = await fetch(`${apiUrl}/api/bosses`);
-    if (!res.ok) {
-      throw new Error(`API responded with status ${res.status}`);
-    }
     const bosses = await res.json();
 
     return {
@@ -21,7 +18,8 @@ export async function getStaticProps() {
   } catch (error) {
     console.error("Failed to fetch bosses:", error);
     return {
-      notFound: true,
+      props: { bosses: [] },
+      revalidate: 60,
     };
   }
 }
