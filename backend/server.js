@@ -63,6 +63,10 @@ app.use((req, res, next) => {
     "java",
   ];
 
+  if (userAgent.includes("vercel") || userAgent.includes("next")) {
+    return next();
+  }
+
   const isBlocked = blockedAgents.some((agent) =>
     userAgent.toLowerCase().includes(agent),
   );
