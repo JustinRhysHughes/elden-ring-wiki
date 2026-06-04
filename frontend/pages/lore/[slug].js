@@ -16,7 +16,7 @@ export async function getStaticProps({ params }) {
     process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
 
   try {
-    const res = await fetch(`${apiUrl}/api/lore/${params.slug}`);
+    const res = await fetch(`${apiUrl}/api/lores/${params.slug}`);
 
     if (!res.ok) {
       return { notFound: true };
@@ -46,7 +46,7 @@ export default function LoreDetail({ entry }) {
 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/lore/${entry.id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/lores/${entry.id}`,
         {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` },
@@ -54,7 +54,7 @@ export default function LoreDetail({ entry }) {
       );
 
       if (res.ok) {
-        router.push("/lore");
+        router.push("/lores");
       } else {
         alert("Failed to delete lore entry");
       }
@@ -66,7 +66,7 @@ export default function LoreDetail({ entry }) {
   return (
     <div className={styles.container}>
       <div className={styles.topBar}>
-        <Link href="/lore" className={styles.back}>
+        <Link href="/lores" className={styles.back}>
           ← Back to Lore
         </Link>
         {user?.isAdmin && (
