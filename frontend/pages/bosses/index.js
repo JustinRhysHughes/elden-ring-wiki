@@ -27,8 +27,12 @@ export async function getStaticProps() {
   }
 }
 
-export default function Bosses({ bosses }) {
+export default function Lore({ lores = [] }) {
   const { user } = useAuth();
+
+  if (!lores || lores.length === 0) {
+    return <div>No lore entries found</div>;
+  }
 
   return (
     <>
