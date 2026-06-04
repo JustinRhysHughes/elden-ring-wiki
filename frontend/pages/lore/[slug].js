@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import { useAuth } from "../../context/AuthContext";
 import styles from "../../styles/loreDetail.module.scss";
 
-//* Tell Next.js which lore slugs exist
 export async function getStaticPaths() {
   return {
     paths: [],
@@ -12,13 +11,12 @@ export async function getStaticPaths() {
   };
 }
 
-//* Generate the static page for each slug
 export async function getStaticProps({ params }) {
   const apiUrl =
     process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
 
   try {
-    const res = await fetch(`${apiUrl}/lores/${params.slug}`);
+    const res = await fetch(`${apiUrl}/api/lore/${params.slug}`);
 
     if (!res.ok) {
       return { notFound: true };
@@ -32,7 +30,7 @@ export async function getStaticProps({ params }) {
 
     return {
       props: { entry },
-      revalidate: 3600, //* Re-generate every 1 hour
+      revalidate: 3600,
     };
   } catch (err) {
     return { notFound: true };
@@ -79,7 +77,6 @@ export default function LoreDetail({ entry }) {
       </div>
 
       <div className={styles.layout}>
-        {/* Left — image */}
         {entry.image && (
           <div className={styles.imageWrapper}>
             <Image
@@ -93,7 +90,6 @@ export default function LoreDetail({ entry }) {
           </div>
         )}
 
-        {/* Right — content */}
         <div className={styles.content}>
           <span className={styles.eyebrow}>Lore</span>
           <h1 className={styles.title}>{entry.title}</h1>
