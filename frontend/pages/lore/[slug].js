@@ -4,19 +4,12 @@ import { useRouter } from "next/router";
 import { useAuth } from "../../context/AuthContext";
 import styles from "../../styles/loreDetail.module.scss";
 
-export async function getStaticPaths() {
-  return {
-    paths: [],
-    fallback: "blocking",
-  };
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const apiUrl =
-    process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki-api.vercel.app";
+    process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
 
   try {
-    const res = await fetch(`${apiUrl}/api/lores/${params.slug}`);
+    const res = await fetch(`${apiUrl}/api/lore/${params.slug}`);
 
     if (!res.ok) {
       return { notFound: true };
@@ -28,10 +21,7 @@ export async function getStaticProps({ params }) {
       return { notFound: true };
     }
 
-    return {
-      props: { entry },
-      revalidate: 3600,
-    };
+    return { props: { entry } };
   } catch (err) {
     return { notFound: true };
   }
@@ -45,14 +35,13 @@ export default function LoreDetail({ entry }) {
     if (!confirm(`Are you sure you want to delete ${entry.title}?`)) return;
 
     try {
-      const apiUrl =
-        process.env.NEXT_PUBLIC_API_URL ||
-        "https://elden-ring-wiki-api.vercel.app";
-
-      const res = await fetch(`${apiUrl}/api/lores/${entry.id}`, {
-        method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/lore/${entry.id}`,
+        {
+          method: "DELETE",
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
 
       if (res.ok) {
         router.push("/lore");
@@ -78,6 +67,7 @@ export default function LoreDetail({ entry }) {
       </div>
 
       <div className={styles.layout}>
+        {/* Left — image */}
         {entry.image && (
           <div className={styles.imageWrapper}>
             <Image
@@ -91,6 +81,7 @@ export default function LoreDetail({ entry }) {
           </div>
         )}
 
+        {/* Right — content */}
         <div className={styles.content}>
           <span className={styles.eyebrow}>Lore</span>
           <h1 className={styles.title}>{entry.title}</h1>

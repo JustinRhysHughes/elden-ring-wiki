@@ -2,15 +2,12 @@ import Link from "next/link";
 import { useAuth } from "../../context/AuthContext";
 import styles from "../../styles/lore.module.scss";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const apiUrl =
     process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
-  const res = await fetch(`${apiUrl}/api/lores`);
+  const res = await fetch(`${apiUrl}/api/lore`);
   const lore = await res.json();
-  return {
-    props: { lore },
-    revalidate: 3600,
-  };
+  return { props: { lore } };
 }
 
 export default function Lore({ lore }) {
@@ -21,7 +18,7 @@ export default function Lore({ lore }) {
       <div className={styles.header}>
         <div className={styles.headerLeft}>
           <span className={styles.sectionLabel}>Chronicles</span>
-          <h1 className={styles.title}>Lore</h1>
+          <h1 className={styles.title}>Lore</h1>{" "}
           <p className={styles.subtitle}>
             Uncover the shattered history of the Lands Between
           </p>

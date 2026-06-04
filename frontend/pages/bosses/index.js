@@ -3,17 +3,14 @@ import Head from "next/head";
 import { useAuth } from "../../context/AuthContext";
 import styles from "../../styles/bosses.module.scss";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const apiUrl =
     process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
 
   const res = await fetch(`${apiUrl}/api/bosses`);
   const bosses = await res.json();
 
-  return {
-    props: { bosses },
-    revalidate: 3600,
-  };
+  return { props: { bosses } };
 }
 
 export default function Bosses({ bosses }) {
