@@ -7,12 +7,24 @@ export async function getStaticProps() {
   const apiUrl =
     process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
 
-  const res = await fetch(`${apiUrl}/bosses`);
-  const bosses = await res.json();
-  return {
-    props: { bosses },
-    revalidate: 3600, //* Re-generate every 1 hour
-  };
+  try {
+    const res = await fetch(`${apiUrl}/bosses`);
+    const data = await res.json();
+
+    //* Handle if response is wrapped in an object
+    const bosses = Array.isArray(data) ? data : data.bosses || data.data || [];
+
+    return {
+      props: { bosses },
+      revalidate: 3600,
+    };
+  } catch (err) {
+    console.error("Error fetching bosses:", err);
+    return {
+      props: { bosses: [] },
+      revalidate: 60,
+    };
+  }
 }
 
 export default function Bosses({ bosses }) {

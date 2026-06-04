@@ -5,12 +5,25 @@ import styles from "../../styles/lore.module.scss";
 export async function getStaticProps() {
   const apiUrl =
     process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
-  const res = await fetch(`${apiUrl}/lore`);
-  const lore = await res.json();
-  return {
-    props: { lore },
-    revalidate: 3600, //* Re-generate every 1 hour
-  };
+
+  try {
+    const res = await fetch(`${apiUrl}/lores`);
+    const data = await res.json();
+
+    //* Handle if response is wrapped in an object
+    const lores = Array.isArray(data) ? data : data.lores || data.data || [];
+
+    return {
+      props: { lores },
+      revalidate: 3600,
+    };
+  } catch (err) {
+    console.error("Error fetching lores:", err);
+    return {
+      props: { lores: [] },
+      revalidate: 60,
+    };
+  }
 }
 
 export default function Lore({ lore }) {
