@@ -54,7 +54,7 @@ export default function LoreDetail({ entry }) {
       );
 
       if (res.ok) {
-        router.push("/lores");
+        router.push("/lore");
       } else {
         alert("Failed to delete lore entry");
       }
@@ -66,7 +66,7 @@ export default function LoreDetail({ entry }) {
   return (
     <div className={styles.container}>
       <div className={styles.topBar}>
-        <Link href="/lores" className={styles.back}>
+        <Link href="/lore" className={styles.back}>
           ← Back to Lore
         </Link>
         {user?.isAdmin && (

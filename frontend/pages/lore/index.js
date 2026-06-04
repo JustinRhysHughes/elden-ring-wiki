@@ -6,9 +6,9 @@ export async function getStaticProps() {
   const apiUrl =
     process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
   const res = await fetch(`${apiUrl}/api/lores`);
-  const lores = await res.json();
+  const lore = await res.json();
   return {
-    props: { lores },
+    props: { lore },
     revalidate: 3600,
   };
 }
@@ -27,7 +27,7 @@ export default function Lore({ lore }) {
           </p>
         </div>
         {user?.isAdmin && (
-          <Link href="/lores/add" className={styles.addBtn}>
+          <Link href="/lore/add" className={styles.addBtn}>
             + Add Lore
           </Link>
         )}
@@ -35,7 +35,7 @@ export default function Lore({ lore }) {
       <div className={styles.grid}>
         {lore.map((entry) => (
           <Link
-            href={`/lores/${entry.slug}`}
+            href={`/lore/${entry.slug}`}
             key={entry.slug}
             className={styles.card}
           >
