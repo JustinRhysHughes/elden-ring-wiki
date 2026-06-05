@@ -46,8 +46,7 @@ export default function LoreDetail({ entry }) {
 
     try {
       const apiUrl =
-        process.env.NEXT_PUBLIC_API_URL ||
-        "https://elden-ring-wiki-api.vercel.app";
+        process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
 
       const res = await fetch(`${apiUrl}/api/lores/${entry.id}`, {
         method: "DELETE",
