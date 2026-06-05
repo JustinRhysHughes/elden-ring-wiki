@@ -4,7 +4,14 @@ import { useRouter } from "next/router";
 import { useAuth } from "../../context/AuthContext";
 import styles from "../../styles/bossDetail.module.scss";
 
-export async function getServerSideProps({ params }) {
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: "blocking",
+  };
+}
+
+export async function getStaticProps({ params }) {
   const apiUrl =
     process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
 
@@ -17,7 +24,10 @@ export async function getServerSideProps({ params }) {
 
     if (!entry || !entry.id) return { notFound: true };
 
-    return { props: { entry } };
+    return {
+      props: { entry },
+      revalidate: 3600,
+    };
   } catch (err) {
     return { notFound: true };
   }
@@ -32,7 +42,8 @@ export default function BossDetail({ entry }) {
 
     try {
       const apiUrl =
-        process.env.NEXT_PUBLIC_API_URL || "https://elden-ring-wiki.vercel.app";
+        process.env.NEXT_PUBLIC_API_URL ||
+        "https://elden-ring-wiki.vercel.app";
 
       const res = await fetch(`${apiUrl}/api/bosses/${entry.id}`, {
         method: "DELETE",
